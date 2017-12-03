@@ -1,58 +1,35 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllTasks, postNewTask } from '../redux/reducer';
+import { getAllTasks } from '../redux/reducer';
 import Task from './Task';
+import AddTaskForm from './AddTaskForm';
 
 class Home extends Component {
-  constructor(props){
-    super(props);
-  }
-  componentDidMount(){
+  componentDidMount() {
     getAllTasks();
   }
   render() {
     return (
       <div>
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-12">
-           <h1>Cosmic To-Do App!!</h1>
-            <form onSubmit={evt => {
-               evt.preventDefault();
-               this.props.postNewTask(evt.target.taskName.value);
-               evt.target.taskName.value = "";
-              }
-             }>
-              <div className="form-group">
-              <label for="exampleInputEmail1">Add New To-Do</label>
-              <input name="taskName" placeholder="Enter new task" />
-              </div>
-              <button type="submit">Add</button>
-            </form>
-          </div>
+        <div className="container">
+          <h1>Cosmic To-Do App!!</h1>
+          <AddTaskForm />
+        </div>
+        <h3>Let's get some work done!</h3>
+        <div className="container">
+          {
+            this.props.tasks && this.props.tasks.map((task) => {
+              return (
+                <Task key={task._id} Obj={task} isComplete={task.metafields[0].value} name={task.title} />
+              )
+            })
+          }
         </div>
       </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-12">
-            <h3>Let's get some work done!</h3>
-          </div>
-        </div>
-      </div>
-      <div className="container">
-        {
-          this.props.tasks && this.props.tasks.map((task) => {
-            return (
-              <Task key={task._id} Obj={task} isComplete={task.metafields[0].value} name={task.title}/>
-            )
-          })
-        }
-      </div>
-      </div>
-    )
+    );
   }
 }
 
-const mapState = ({tasks}) => ({tasks});
-const mapDispatch = {getAllTasks, postNewTask};
+const mapState = ({ tasks }) => ({ tasks });
+const mapDispatch = { getAllTasks };
 export default connect(mapState, mapDispatch)(Home);
