@@ -1,16 +1,15 @@
-let path = require('path');
-let webpack = require('webpack');
-let LiveReloadPlugin = require('webpack-livereload-plugin');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './client/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'client/dist')
+    path: path.resolve(__dirname, 'client/dist'),
   },
   context: __dirname,
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '*']
+    extensions: ['.js', '.jsx', '.json', '*'],
   },
   module: {
     rules: [{
@@ -18,24 +17,24 @@ module.exports = {
       exclude: /(node_modules|bower_components)/,
       loader: 'babel-loader',
       options: {
-        presets: ['react', 'es2015']
-      }
+        presets: ['react', 'es2015'],
+      },
     },
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      }]
+    {
+      test: /\.scss$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader',
+      ],
+    }],
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env.COSMIC_BUCKET': JSON.stringify(process.env.COSMIC_BUCKET),
       'process.env.COSMIC_READ_KEY': JSON.stringify(process.env.COSMIC_READ_KEY),
-      'process.env.COSMIC_WRITE_KEY': JSON.stringify(process.env.COSMIC_WRITE_KEY)
+      'process.env.COSMIC_WRITE_KEY': JSON.stringify(process.env.COSMIC_WRITE_KEY),
     }),
-    new LiveReloadPlugin({appendScriptTag: true})
-  ]
+  ],
 };

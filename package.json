@@ -39,7 +39,10 @@
     "style-loader": "^0.16.1",
     "volleyball": "^1.4.1",
     "webpack": "^2.2.1",
-    "webpack-livereload-plugin": "^0.10.0"
+    "webpack-livereload-plugin": "^0.10.0",
+    "webpack-hot-middleware": "^2.21.0",
+    "webpack-dev-middleware": "^1.8.*",
+    "better-npm-run": "0.0.11"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -51,6 +54,9 @@
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
     "supertest": "^2.0.1",
-    "supertest-as-promised": "^4.0.1"
+    "supertest-as-promised": "^4.0.1",
+    "phantomjs-polyfill-find": "github:ptim/phantomjs-polyfill-find",
+    "phantomjs-polyfill-includes": "^1.0.2",
+    "phantomjs-polyfill-string-includes": "^1.0.0"
   }
 }
