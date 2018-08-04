@@ -40,7 +40,8 @@
     "volleyball": "^1.4.1",
     "webpack": "^2.2.1",
     "webpack-hot-middleware": "^2.21.0",
-    "webpack-dev-middleware": "^1.8.*"
+    "webpack-dev-middleware": "^1.8.*",
+    "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",

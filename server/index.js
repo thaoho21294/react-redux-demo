@@ -10,9 +10,8 @@ const path = require('path');
 const env = process.env.NODE_ENV || 'development';
 const isDevMode = env.toLowerCase() !== 'production';
 
-// serve up static files
-app.use(express.static(path.resolve(__dirname, '..', 'client')));
-app.use(express.static(path.resolve(__dirname, '..', 'node_modules')));
+app.set('views', `${__dirname}`);
+app.set('view engine', 'pug');
 
 if (isDevMode) {
   const compiler = webpack(webpackConfig);
@@ -26,14 +25,16 @@ if (isDevMode) {
     console.error(err.stack);
     res.status(err.status || 500).send(err.message || 'Internal server error.');
   });
+} else {
+  /* Case PRODUCTION mode */
+  app.use(express.static(webpackConfig.settings.distPath));
 }
 
 // handle every other route with index.html, which will contain
 // a script tag to our application's JavaScript file(s).
 app.get('*', (request, response) => {
-  response.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'));
+  response.render('index');
 });
-
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, () => {
