@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { postNewTask } from '../redux/reducer';
 
@@ -16,14 +16,18 @@ class AddTaskForm extends Component {
 
   render() {
     return (
-    <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
         <div className="form-group">
-        <label for="exampleInputEmail1">Add New To-Do</label>
-        <input name="taskName" placeholder="Enter new task" />
+          <label htmlFor="taskName1">Add New To-Do</label>
+          <input id="taskName1" name="taskName" placeholder="Enter new task" />
         </div>
         <button type="submit">Add</button>
-    </form>)
+      </form>);
   }
 }
+AddTaskForm.propTypes = {
+  postNewTask: PropTypes.func.isRequired,
+};
+
 const mapDispatch = { postNewTask };
 export default connect(null, mapDispatch)(AddTaskForm);

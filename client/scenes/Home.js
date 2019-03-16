@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 
 import { getAllTasks } from '../redux/reducer';
-import Task from '../components/Task';
+import TaskList from '../components/TaskList';
 import AddTaskForm from '../components/AddTaskForm';
 import LefMenu from '../components/LeftMenu';
 
@@ -24,15 +24,9 @@ class Home extends Component {
                 <h1>Cosmic To-Do App!!</h1>
                 <AddTaskForm />
               </div>
-              <h3>Let's get some work done!</h3>
+              <h3>Lets get some work done!</h3>
               <div className="container">
-                {
-                  this.props.tasks && this.props.tasks.map((task) => {
-                    return (
-                      <Task key={task._id} Obj={task} isComplete={task.metafields[0].value} name={task.title} />
-                    );
-                  })
-                }
+                <TaskList tasks={this.props.tasks} />
               </div>
             </Col>
           </Row>
@@ -41,6 +35,10 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  tasks: PropTypes.array.isRequired,
+};
 
 const mapState = ({ tasks }) => ({ tasks });
 const mapDispatch = { getAllTasks };

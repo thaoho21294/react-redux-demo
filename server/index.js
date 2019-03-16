@@ -5,7 +5,6 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const app = express();
-const path = require('path');
 
 const env = process.env.NODE_ENV || 'development';
 const isDevMode = env.toLowerCase() !== 'production';
