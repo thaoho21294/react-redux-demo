@@ -9,7 +9,7 @@ import LefMenu from '../components/LeftMenu';
 
 class Home extends Component {
   componentDidMount() {
-    getAllTasks();
+    this.props.getAllTasks();
   }
   render() {
     return (
@@ -38,6 +38,7 @@ class Home extends Component {
 
 Home.propTypes = {
   tasks: PropTypes.array.isRequired,
+  getAllTasks: PropTypes.func.isRequired
 };
 
 const mapState = ({ tasks }) => ({ tasks });

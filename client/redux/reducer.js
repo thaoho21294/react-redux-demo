@@ -8,17 +8,17 @@ const getTasks = (tasks) => { return { type: GET_ALL_TASKS, tasks }; };
 const addTask = (task) => { return { type: POST_TASK, task }; };
 const changeStatus = (task) => { return { type: CHANGE_STATUS, task }; };
 const taskDelete = (slug) => { return { type: DELETE_TASK, slug }; };
-// initiate your starting state
+
 const initial = {
   tasks: [],
 };
 const reducer = (state = initial, action) => {
   switch (action.type) {
-    case GET_ALL_TASKS:
-      return Object.assign({}, state, { tasks: action.tasks.objects });
+    case GET_ALL_TASKS: return { ...state, tasks: action.tasks };
     case POST_TASK: {
-      const updatedTasks = [...action.tasks, ...state.tasks];
-      return { ...state, tasks: updatedTasks };
+      const updateTasks = [...state.tasks];
+      updateTasks.push(action.task);
+      return { state, tasks: updateTasks};
     }
     case CHANGE_STATUS: {
       const newArr = state.tasks.map((task) => {
@@ -41,17 +41,14 @@ const reducer = (state = initial, action) => {
 export default reducer;
 
 
-export const getAllTasks = () => (dispatch) => {
-  axios.get('https://api.cosmicjs.com/v1/your-bucket-slug-name/object-type/tasks')
-    .then((response) => {
-      return response.data;
-    })
-    .then((tasks) => {
-      dispatch(getTasks(tasks));
-    })
-    .catch((err) => {
-      console.error.bind(err);
-    });
+export const getAllTasks = () => {
+  return (dispatch) => {
+    dispatch(getTasks([
+      { id: 't01', title: 'task 1', metafields: [{ value: false }], slug: 'task1' },
+      { id: 't02', title: 'task 2', metafields: [{ value: true }], slug: 'task2' },
+      { id: 't03', title: 'task 3', metafields: [{ value: false }], slug: 'task3' }
+    ]))
+  }
 };
 
 const formatSlug = (title) => {
@@ -59,57 +56,23 @@ const formatSlug = (title) => {
   return lower.split(' ').join('-');
 };
 
-export const postNewTask = (task) => {
+export const postNewTask = (title) => {
   return (dispatch) => {
-    dispatch(addTask({ title: task, metafields: [{ value: false }], slug: formatSlug(task) }));
-    axios.post('https://api.cosmicjs.com/v1/your-bucket-slug-name/add-object', {
-      type_slug: 'tasks',
-      title: task,
-      content: 'New Task',
-      metafields: [
-        {
-          title: 'Is Complete',
-          key: 'is_complete',
-          value: false,
-          type: 'text',
-        }] })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error.bind(err);
-      });
+    const newId = generateId();
+    dispatch(addTask({ id: newId, title, metafields: [{ value: false }], slug: formatSlug(title) }));
   };
 };
 
 export const putChangeStatus = (task, bool) => (dispatch) => {
   dispatch(changeStatus(task));
-  axios.put('https://api.cosmicjs.com/v1/your-bucket-slug-name/edit-object', {
-    slug: task.slug,
-    metafields: [
-      {
-        title: 'Is Complete',
-        key: 'is_complete',
-        value: !bool,
-        type: 'text',
-      }] })
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((err) => {
-      console.error.bind(err);
-    });
 };
 
 export const deleteTask = (slug) => {
   return (dispatch) => {
     dispatch(taskDelete(slug));
-    axios.delete(`https://api.cosmicjs.com/v1/your-bucket-slug-name/${slug}`)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error.bind(err);
-      });
-  };
+  }
 };
+
+const generateId = () => {
+  return Math.random().toString(36).substring(7);
+}
