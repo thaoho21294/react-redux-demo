@@ -33,7 +33,6 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
-    "uglifyjs-webpack-plugin": "^2.1.2",
     "volleyball": "^1.4.1",
     "webpack": "^4.29.6",
     "prop-types": "^15.7.2"
