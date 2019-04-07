@@ -17,15 +17,21 @@ module.exports = {
       exclude: /(node_modules|bower_components)/,
       loader: 'babel-loader',
       options: {
-        presets: ['react', 'es2015', 'stage-0'],
+        presets: ['@babel/preset-react'],
       },
     },
     {
       test: /\.scss$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader',
+      use: [{ loader: 'style-loader' },
+        {
+          loader: 'css-loader',
+          options: {
+            module: true,
+          },
+        },
+        {
+          loader: 'sass-loader',
+        },
       ],
     }],
   },

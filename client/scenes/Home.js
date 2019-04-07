@@ -1,11 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Container, Row, Col } from 'reactstrap';
 
 import { getAllTasks } from '../redux/reducer';
 import TaskList from '../components/TaskList';
 import AddTaskForm from '../components/AddTaskForm';
 import LefMenu from '../components/LeftMenu';
+import CustomNavBar from '../components/CustomNavBar';
+import Style from '../styles/mainSheet/main.scss';
 
 class Home extends Component {
   componentDidMount() {
@@ -14,23 +16,15 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Container>
-          <Row>
-            <Col xs="6">
-              <LefMenu />
-            </Col>
-            <Col xs="6">
-              <div className="container">
-                <h1>Cosmic To-Do App!!</h1>
-                <AddTaskForm />
-              </div>
-              <h3>Lets get some work done!</h3>
-              <div className="container">
-                <TaskList tasks={this.props.tasks} />
-              </div>
-            </Col>
-          </Row>
-        </Container>
+        <CustomNavBar />
+        <div className={Style.content}>
+          <LefMenu />
+          <div className="container">
+            <h1>To-Do App!!</h1>
+            <AddTaskForm />
+            <TaskList tasks={this.props.tasks} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -38,7 +32,7 @@ class Home extends Component {
 
 Home.propTypes = {
   tasks: PropTypes.array.isRequired,
-  getAllTasks: PropTypes.func.isRequired
+  getAllTasks: PropTypes.func.isRequired,
 };
 
 const mapState = ({ tasks }) => ({ tasks });

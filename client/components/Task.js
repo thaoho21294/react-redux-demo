@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'reactstrap';
+import { Button } from 'react-bootstrap';
 
 import { putChangeStatus, deleteTask } from '../redux/reducer';
 
@@ -19,10 +20,10 @@ class Task extends Component {
     return (
       <div className="row">
         <div className="btn-group" role="group" aria-label="Basic example">
-          <Button type="button" onClick={this.onComplete} className="btn" color="primary">
+          <Button type="button" onClick={this.onComplete} variant="primary">
             {this.props.isComplete ? 'Undo' : 'Complete' }
           </Button>
-          <Button type="button" onClick={this.onDelete} className="btn" color="danger">
+          <Button type="button" onClick={this.onDelete} variant="danger">
             Delete
           </Button>
         </div>

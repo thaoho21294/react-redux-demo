@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const GET_ALL_TASKS = 'GET_ALL_TASKS';
 const POST_TASK = 'POST_TASK';
 const CHANGE_STATUS = 'CHANGE_STATUS';
@@ -18,7 +16,7 @@ const reducer = (state = initial, action) => {
     case POST_TASK: {
       const updateTasks = [...state.tasks];
       updateTasks.push(action.task);
-      return { state, tasks: updateTasks};
+      return { state, tasks: updateTasks };
     }
     case CHANGE_STATUS: {
       const newArr = state.tasks.map((task) => {
@@ -46,9 +44,9 @@ export const getAllTasks = () => {
     dispatch(getTasks([
       { id: 't01', title: 'task 1', metafields: [{ value: false }], slug: 'task1' },
       { id: 't02', title: 'task 2', metafields: [{ value: true }], slug: 'task2' },
-      { id: 't03', title: 'task 3', metafields: [{ value: false }], slug: 'task3' }
-    ]))
-  }
+      { id: 't03', title: 'task 3', metafields: [{ value: false }], slug: 'task3' },
+    ]));
+  };
 };
 
 const formatSlug = (title) => {
@@ -56,10 +54,15 @@ const formatSlug = (title) => {
   return lower.split(' ').join('-');
 };
 
+const generateId = () => {
+  return Math.random().toString(36).substring(7);
+};
+
 export const postNewTask = (title) => {
   return (dispatch) => {
     const newId = generateId();
-    dispatch(addTask({ id: newId, title, metafields: [{ value: false }], slug: formatSlug(title) }));
+    dispatch(
+      addTask({ id: newId, title, metafields: [{ value: false }], slug: formatSlug(title) }));
   };
 };
 
@@ -70,9 +73,5 @@ export const putChangeStatus = (task, bool) => (dispatch) => {
 export const deleteTask = (slug) => {
   return (dispatch) => {
     dispatch(taskDelete(slug));
-  }
+  };
 };
-
-const generateId = () => {
-  return Math.random().toString(36).substring(7);
-}

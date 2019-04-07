@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 // eslint-disable-next-line
 class LeftMenu extends Component {
