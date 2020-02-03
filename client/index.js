@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import Home from './scenes/Home';
 import store from './redux/store';
 
+import 'bootstrap/dist/css/bootstrap.css'
+
 render(
   <Provider store={store}>
     <Home />

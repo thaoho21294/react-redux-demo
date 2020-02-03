@@ -6,10 +6,10 @@ class CustomNavBar extends Component {
   render() {
     return (
       <Navbar bg="light" expand="lg" >
-        <Navbar.Brand href="#home">Todo App</Navbar.Brand>
+        <Navbar.Brand href="#home" className="mr-auto">Todo App</Navbar.Brand>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
+          <Button variant="success">Search</Button>
         </Form>
       </Navbar>
     );
