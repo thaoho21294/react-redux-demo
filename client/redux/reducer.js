@@ -2,13 +2,16 @@ const GET_ALL_TASKS = 'GET_ALL_TASKS';
 const POST_TASK = 'POST_TASK';
 const CHANGE_STATUS = 'CHANGE_STATUS';
 const DELETE_TASK = 'DELETE_TASK';
+const SET_CURRENT_VIEW = 'SET_CURRENT_VIEW';
 const getTasks = (tasks) => { return { type: GET_ALL_TASKS, tasks }; };
 const addTask = (task) => { return { type: POST_TASK, task }; };
 const changeStatus = (task) => { return { type: CHANGE_STATUS, task }; };
 const taskDelete = (slug) => { return { type: DELETE_TASK, slug }; };
+const setCurrentViewAction = (view) => { return { type: SET_CURRENT_VIEW, view }; };
 
 const initial = {
   tasks: [],
+  view: 'ALL_TASK',
 };
 const reducer = (state = initial, action) => {
   switch (action.type) {
@@ -20,7 +23,9 @@ const reducer = (state = initial, action) => {
     }
     case CHANGE_STATUS: {
       const newArr = state.tasks.map((task) => {
-        if (task.slug === action.task.slug) task.metafields[0].value = !task.metafields[0].value;
+        if (task.id === action.task.id) {
+          return { ...task, isCompleted: !task.isCompleted };
+        }
         return task;
       });
       return { ...state, tasks: newArr };
@@ -30,6 +35,9 @@ const reducer = (state = initial, action) => {
         return !(task.slug === action.slug);
       });
       return { ...state, tasks: arr };
+    }
+    case SET_CURRENT_VIEW : {
+      return { ...state, view: action.view };
     }
     default:
       return state;
@@ -42,16 +50,11 @@ export default reducer;
 export const getAllTasks = () => {
   return (dispatch) => {
     dispatch(getTasks([
-      { id: 't01', title: 'task 1', metafields: [{ value: false }], slug: 'task1' },
-      { id: 't02', title: 'task 2', metafields: [{ value: true }], slug: 'task2' },
-      { id: 't03', title: 'task 3', metafields: [{ value: false }], slug: 'task3' },
+      { id: 't01', title: 'task 1', isCompleted: false },
+      { id: 't02', title: 'task 2', isCompleted: true },
+      { id: 't03', title: 'task 3', isCompleted: false },
     ]));
   };
-};
-
-const formatSlug = (title) => {
-  const lower = title.toLowerCase();
-  return lower.split(' ').join('-');
 };
 
 const generateId = () => {
@@ -62,16 +65,24 @@ export const postNewTask = (title) => {
   return (dispatch) => {
     const newId = generateId();
     dispatch(
-      addTask({ id: newId, title, metafields: [{ value: false }], slug: formatSlug(title) }));
+      addTask({ id: newId, title, isCompleted: false }));
   };
 };
 
-export const putChangeStatus = (task, bool) => (dispatch) => {
-  dispatch(changeStatus(task));
+export const putChangeStatus = (task) => {
+  return (dispatch) => {
+    dispatch(changeStatus(task));
+  };
 };
 
 export const deleteTask = (slug) => {
   return (dispatch) => {
     dispatch(taskDelete(slug));
+  };
+};
+
+export const setCurrentView = (view) => {
+  return (dispatch) => {
+    dispatch(setCurrentViewAction(view));
   };
 };

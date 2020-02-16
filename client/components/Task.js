@@ -6,12 +6,12 @@ import { Button } from 'react-bootstrap';
 import { putChangeStatus, deleteTask } from '../redux/reducer';
 
 class Task extends Component {
-  onComplete() {
-    const { Obj, isComplete } = this.props;
-    this.props.putChangeStatus(Obj, isComplete);
+  onComplete = () => {
+    const { Obj, isCompleted } = this.props;
+    this.props.putChangeStatus(Obj, isCompleted);
   }
 
-  onDelete() {
+  onDelete = () => {
     const { Obj: { slug } } = this.props;
     this.props.deleteTask(slug);
   }
@@ -21,13 +21,13 @@ class Task extends Component {
       <div className="row">
         <div className="btn-group" role="group" aria-label="Basic example">
           <Button type="button" onClick={this.onComplete} variant="primary">
-            {this.props.isComplete ? 'Undo' : 'Complete' }
+            {this.props.isCompleted ? 'Undo' : 'Complete' }
           </Button>
           <Button type="button" onClick={this.onDelete} variant="danger">
             Delete
           </Button>
         </div>
-        <h3 style={{ textDecoration: this.props.isComplete ? 'line-through' : 'none' }}>{this.props.name}</h3>
+        <h3 style={{ textDecoration: this.props.isCompleted ? 'line-through' : 'none' }}>{this.props.name}</h3>
       </div>
     );
   }
@@ -35,7 +35,7 @@ class Task extends Component {
 
 Task.propTypes = {
   Obj: PropTypes.object.isRequired,
-  isComplete: PropTypes.bool.isRequired,
+  isCompleted: PropTypes.bool.isRequired,
   putChangeStatus: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
