@@ -5,9 +5,7 @@ import { connect } from 'react-redux';
 import { setCurrentView } from '../redux/reducer';
 import { VIEW_TYPE } from '../constant';
 
-// eslint-disable-next-line
 class LeftMenu extends Component {
-
   openAllTasks = () => {
     this.props.setCurrentView(VIEW_TYPE.ALL_TASK);
   }
@@ -16,12 +14,16 @@ class LeftMenu extends Component {
     this.props.setCurrentView(VIEW_TYPE.COMPLETED_TASK);
   }
 
+  openTodoTasks = () => {
+    this.props.setCurrentView(VIEW_TYPE.TODO_TASK);
+  }
+
   render() {
     return (
       <ListGroup>
         <ListGroup.Item action onClick={this.openAllTasks}>All tasks</ListGroup.Item>
         <ListGroup.Item action onClick={this.openCompletedTasks}>Completed Tasks</ListGroup.Item>
-        <ListGroup.Item action>Next 7 days</ListGroup.Item>
+        <ListGroup.Item action onClick={this.openTodoTasks}>Todo Tasks</ListGroup.Item>
         <ListGroup.Item action>Project</ListGroup.Item>
         <ListGroup.Item action>Archived Project</ListGroup.Item>
       </ListGroup>

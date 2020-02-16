@@ -32,7 +32,7 @@ const reducer = (state = initial, action) => {
     }
     case DELETE_TASK: {
       const arr = state.tasks.filter((task) => {
-        return !(task.slug === action.slug);
+        return !(task.id === action.id);
       });
       return { ...state, tasks: arr };
     }

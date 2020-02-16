@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 
 import { getAllTasks } from '../redux/reducer';
 import { VIEW_TYPE } from '../constant';
-import TaskView from '../components/TaskView';
-import CompletedTaskList from '../components/CompletedTaskList';
+import TaskView from './TaskView';
+import CompletedTaskList from './CompletedTaskList';
+import TodoTasks from './TodoTasks';
 
 
 class MainView extends Component {
@@ -19,6 +20,10 @@ class MainView extends Component {
       case VIEW_TYPE.COMPLETED_TASK: {
         const completedTasks = tasks.filter(task => task.isCompleted);
         return <CompletedTaskList tasks={completedTasks} />;
+      }
+      case VIEW_TYPE.TODO_TASK: {
+        const todoTasks = tasks.filter(task => !task.isCompleted);
+        return <TodoTasks tasks={todoTasks} />;
       }
       default: return '';
     }
