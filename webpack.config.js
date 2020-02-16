@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './client/index.js',
@@ -53,5 +54,6 @@ module.exports = {
       'process.env.COSMIC_READ_KEY': JSON.stringify(process.env.COSMIC_READ_KEY),
       'process.env.COSMIC_WRITE_KEY': JSON.stringify(process.env.COSMIC_WRITE_KEY),
     }),
+    new MiniCssExtractPlugin(),
   ],
 };
