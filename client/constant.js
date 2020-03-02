@@ -4,4 +4,8 @@ export const VIEW_TYPE = {
   TODO_TASK: 'TODO_TASK',
 };
 
-export const some = 'SOME';
+export const TILE_TYPE = {
+  ALL_TASK: 'All Tasks',
+  COMPLETED_TASK: 'Completed Tasks',
+  TODO_TASK: 'Todo Tasks',
+};
