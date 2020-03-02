@@ -1,31 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { postNewTask } from '../redux/reducer';
 
-class AddTaskForm extends Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(evt) {
+function AddTaskForm(props) {
+  function onSubmit(evt) {
     evt.preventDefault();
-    this.props.postNewTask(evt.target.taskName.value);
+    props.postNewTask(evt.target.taskName.value);
     evt.target.taskName.value = '';
   }
 
-  render() {
-    return (
-      <form onSubmit={this.onSubmit}>
-        <div className="form-group">
-          <label htmlFor="taskName1">Add New To-Do</label>
-          <input id="taskName1" name="taskName" placeholder="Enter new task" />
-        </div>
-        <button type="submit">Add</button>
-      </form>);
-  }
+  return (
+    <form onSubmit={onSubmit}>
+      <div className="form-group">
+        <label htmlFor="taskName1">Add New To-Do</label>
+        <input id="taskName1" name="taskName" placeholder="Enter new task" />
+      </div>
+      <button type="submit">Add</button>
+    </form>);
 }
+
 AddTaskForm.propTypes = {
   postNewTask: PropTypes.func.isRequired,
 };
