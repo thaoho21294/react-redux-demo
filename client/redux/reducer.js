@@ -57,6 +57,15 @@ export const getAllTasks = () => {
   };
 };
 
+export const getAllTasksError = () => {
+  return (dispatch) => {
+    dispatch(getTasks([
+      { id: 't01', title: 'task 1', isCompleted: false },
+      { id: 't02', title: 'task 2', isCompleted: true },
+      undefined]));
+  };
+};
+
 const generateId = () => {
   return Math.random().toString(36).substring(7);
 };

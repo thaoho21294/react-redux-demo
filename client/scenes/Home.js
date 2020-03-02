@@ -5,6 +5,7 @@ import LefMenu from '../components/LeftMenu';
 import CustomNavBar from '../components/CustomNavBar';
 import Style from '../styles/mainSheet/main.scss';
 import MainView from '../components/MainView';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 export default function Home() {
   return (
@@ -13,7 +14,9 @@ export default function Home() {
       <div className={classnames(Style.content, 'container')}>
         <LefMenu />
         <div className={Style.tasks}>
-          <MainView />
+          <ErrorBoundary>
+            <MainView />
+          </ErrorBoundary>
         </div>
       </div>
     </div>
