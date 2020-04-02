@@ -5,7 +5,7 @@ import Task from '../components/Task';
 export default function TaskList({ tasks }) {
   return (<div>
     {tasks.map(task =>
-      <Task key={task.id} Obj={task} isCompleted={task.isCompleted} name={task.title} />)}
+      <Task task={task} />)}
   </div>);
 }
 

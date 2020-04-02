@@ -1,3 +1,5 @@
+import { TASK_STATUS, VIEW_TYPE } from '../constant';
+
 const GET_ALL_TASKS = 'GET_ALL_TASKS';
 const POST_TASK = 'POST_TASK';
 const CHANGE_STATUS = 'CHANGE_STATUS';
@@ -5,13 +7,13 @@ const DELETE_TASK = 'DELETE_TASK';
 const SET_CURRENT_VIEW = 'SET_CURRENT_VIEW';
 const getTasks = (tasks) => { return { type: GET_ALL_TASKS, tasks }; };
 const addTask = (task) => { return { type: POST_TASK, task }; };
-const changeStatus = (task) => { return { type: CHANGE_STATUS, task }; };
-const taskDelete = (slug) => { return { type: DELETE_TASK, slug }; };
-const setCurrentViewAction = (view) => { return { type: SET_CURRENT_VIEW, view }; };
+export const changeStatus = (taskId, status) => { return { type: CHANGE_STATUS, taskId, status }; };
+export const deleteTask = (taskId) => { return { type: DELETE_TASK, taskId }; };
+export const setCurrentView = (view) => { return { type: SET_CURRENT_VIEW, view }; };
 
 const initial = {
   tasks: [],
-  view: 'ALL_TASK',
+  view: VIEW_TYPE.ALL_TASK,
 };
 const reducer = (state = initial, action) => {
   switch (action.type) {
@@ -19,22 +21,26 @@ const reducer = (state = initial, action) => {
     case POST_TASK: {
       const updateTasks = [...state.tasks];
       updateTasks.push(action.task);
-      return { state, tasks: updateTasks };
+      return { ...state, tasks: updateTasks };
     }
     case CHANGE_STATUS: {
       const newArr = state.tasks.map((task) => {
-        if (task.id === action.task.id) {
-          return { ...task, isCompleted: !task.isCompleted };
+        if (task.id === action.taskId) {
+          switch (action.status) {
+            case TASK_STATUS.COMPLETED: return { ...task, isCompleted: !task.isCompleted };
+            case TASK_STATUS.BLOCKED: return { ...task, isBlocked: !task.isBlocked };
+            default: return task;
+          }
         }
         return task;
       });
       return { ...state, tasks: newArr };
     }
     case DELETE_TASK: {
-      const arr = state.tasks.filter((task) => {
-        return !(task.id === action.id);
+      const removedTasks = state.tasks.filter((task) => {
+        return !(task.id === action.taskId);
       });
-      return { ...state, tasks: arr };
+      return { ...state, tasks: removedTasks };
     }
     case SET_CURRENT_VIEW : {
       return { ...state, view: action.view };
@@ -48,13 +54,11 @@ export default reducer;
 
 
 export const getAllTasks = () => {
-  return (dispatch) => {
-    dispatch(getTasks([
-      { id: 't01', title: 'task 1', isCompleted: false },
-      { id: 't02', title: 'task 2', isCompleted: true },
-      { id: 't03', title: 'task 3', isCompleted: false },
-    ]));
-  };
+  return getTasks([
+    { id: 't01', title: 'task 1', isCompleted: false },
+    { id: 't02', title: 'task 2', isCompleted: true },
+    { id: 't03', title: 'task 3', isCompleted: false },
+  ]);
 };
 
 export const getAllTasksError = () => {
@@ -71,27 +75,6 @@ const generateId = () => {
 };
 
 export const postNewTask = (title) => {
-  return (dispatch) => {
-    const newId = generateId();
-    dispatch(
-      addTask({ id: newId, title, isCompleted: false }));
-  };
-};
-
-export const putChangeStatus = (task) => {
-  return (dispatch) => {
-    dispatch(changeStatus(task));
-  };
-};
-
-export const deleteTask = (slug) => {
-  return (dispatch) => {
-    dispatch(taskDelete(slug));
-  };
-};
-
-export const setCurrentView = (view) => {
-  return (dispatch) => {
-    dispatch(setCurrentViewAction(view));
-  };
+  const newId = generateId();
+  return addTask({ id: newId, title, isCompleted: false });
 };

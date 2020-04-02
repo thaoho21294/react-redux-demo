@@ -1,45 +1,41 @@
-import React, { Component } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
-import { putChangeStatus, deleteTask } from '../redux/reducer';
+import { changeStatus, deleteTask } from '../redux/reducer';
+import { TASK_STATUS } from '../constant';
 
-class Task extends Component {
-  onComplete = () => {
-    const { Obj, isCompleted } = this.props;
-    this.props.putChangeStatus(Obj, isCompleted);
-  }
+export default function Task({ task: { id, isCompleted, title } }) {
+  const dispatch = useDispatch();
 
-  onDelete = () => {
-    const { Obj: { slug } } = this.props;
-    this.props.deleteTask(slug);
-  }
+  const onComplete = useCallback(() => {
+    dispatch(changeStatus(id, TASK_STATUS.COMPLETED));
+  });
 
-  render() {
-    return (
-      <div className="row">
-        <div className="btn-group" role="group" aria-label="Basic example">
-          <Button type="button" onClick={this.onComplete} variant="primary">
-            {this.props.isCompleted ? 'Undo' : 'Complete' }
-          </Button>
-          <Button type="button" onClick={this.onDelete} variant="danger">
-            Delete
-          </Button>
-        </div>
-        <h3 style={{ textDecoration: this.props.isCompleted ? 'line-through' : 'none' }}>{this.props.name}</h3>
+  const onDelete = () => {
+    dispatch(deleteTask(id));
+  };
+
+  return (
+    <div className="row">
+      <div className="btn-group" role="group" aria-label="Basic example">
+        <Button type="button" onClick={onComplete} variant="primary">
+          {isCompleted ? 'Undo' : 'Complete' }
+        </Button>
+        <Button type="button" onClick={onDelete} variant="danger">
+          Delete
+        </Button>
       </div>
-    );
-  }
+      <h3 style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{title}</h3>
+    </div>
+  );
 }
 
 Task.propTypes = {
-  Obj: PropTypes.object.isRequired,
-  isCompleted: PropTypes.bool.isRequired,
-  putChangeStatus: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
+  task: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    isCompleted: PropTypes.boolean,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
 };
-
-const mapDispatch = { putChangeStatus, deleteTask };
-export default connect(null, mapDispatch)(Task);

@@ -1,13 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { postNewTask } from '../redux/reducer';
 
-function AddTaskForm(props) {
+function AddTaskForm() {
+  const dispatch = useDispatch();
+
   function onSubmit(evt) {
     evt.preventDefault();
-    props.postNewTask(evt.target.taskName.value);
-    evt.target.taskName.value = '';
+    dispatch(postNewTask(evt.target.taskName.value));
   }
 
   return (
@@ -20,9 +20,4 @@ function AddTaskForm(props) {
     </form>);
 }
 
-AddTaskForm.propTypes = {
-  postNewTask: PropTypes.func.isRequired,
-};
-
-const mapDispatch = { postNewTask };
-export default connect(null, mapDispatch)(AddTaskForm);
+export default React.memo(AddTaskForm);

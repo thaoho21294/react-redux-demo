@@ -9,3 +9,8 @@ export const TILE_TYPE = {
   COMPLETED_TASK: 'Completed Tasks',
   TODO_TASK: 'Todo Tasks',
 };
+
+export const TASK_STATUS = {
+  COMPLETED: 'COMPLETED',
+  BLOCKED: 'BLOCKED',
+};

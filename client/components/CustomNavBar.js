@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Navbar, Form, FormControl, Button } from 'react-bootstrap';
 
-// eslint-disable-next-line
-class CustomNavBar extends Component {
-  render() {
-    return (
-      <Navbar bg="light" expand="lg" >
-        <Navbar.Brand href="#home" className="mr-auto">Todo App</Navbar.Brand>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="success">Search</Button>
-        </Form>
-      </Navbar>
-    );
-  }
+
+function CustomNavBar() {
+  return (
+    <Navbar bg="light" expand="lg" >
+      <Navbar.Brand href="#home" className="mr-auto">Todo App</Navbar.Brand>
+      <Form inline>
+        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+        <Button variant="success">Search</Button>
+      </Form>
+    </Navbar>
+  );
 }
 
 export default CustomNavBar;
