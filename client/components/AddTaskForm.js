@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postNewTask } from '../redux/reducer';
+import { addTask } from '../redux/reducer';
+import { postTaskApi } from '../service/tasksService';
 
 function AddTaskForm() {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  function onSubmit(evt) {
+  async function onSubmit(evt) {
+    setLoading(true);
     evt.preventDefault();
-    dispatch(postNewTask(evt.target.taskName.value));
+    const title = evt.target.taskName.value;
+    const response = await postTaskApi(title);
+    setLoading(false);
+    dispatch(addTask(response));
+  }
+
+  if (loading) {
+    return 'loading';
   }
 
   return (

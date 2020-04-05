@@ -5,8 +5,8 @@ const POST_TASK = 'POST_TASK';
 const CHANGE_STATUS = 'CHANGE_STATUS';
 const DELETE_TASK = 'DELETE_TASK';
 const SET_CURRENT_VIEW = 'SET_CURRENT_VIEW';
-const getTasks = (tasks) => { return { type: GET_ALL_TASKS, tasks }; };
-const addTask = (task) => { return { type: POST_TASK, task }; };
+export const getTasks = (tasks) => { return { type: GET_ALL_TASKS, tasks }; };
+export const addTask = (task) => { return { type: POST_TASK, task }; };
 export const changeStatus = (taskId, status) => { return { type: CHANGE_STATUS, taskId, status }; };
 export const deleteTask = (taskId) => { return { type: DELETE_TASK, taskId }; };
 export const setCurrentView = (view) => { return { type: SET_CURRENT_VIEW, view }; };
@@ -51,30 +51,3 @@ const reducer = (state = initial, action) => {
 };
 
 export default reducer;
-
-
-export const getAllTasks = () => {
-  return getTasks([
-    { id: 't01', title: 'task 1', isCompleted: false },
-    { id: 't02', title: 'task 2', isCompleted: true },
-    { id: 't03', title: 'task 3', isCompleted: false },
-  ]);
-};
-
-export const getAllTasksError = () => {
-  return (dispatch) => {
-    dispatch(getTasks([
-      { id: 't01', title: 'task 1', isCompleted: false },
-      { id: 't02', title: 'task 2', isCompleted: true },
-      undefined]));
-  };
-};
-
-const generateId = () => {
-  return Math.random().toString(36).substring(7);
-};
-
-export const postNewTask = (title) => {
-  const newId = generateId();
-  return addTask({ id: newId, title, isCompleted: false });
-};
