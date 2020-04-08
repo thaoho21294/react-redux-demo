@@ -5,7 +5,7 @@ import Task from '../components/Task';
 export default function TaskList({ tasks }) {
   return (<div>
     {tasks.map(task =>
-      <Task task={task} />)}
+      <Task key={task.id} task={task} />)}
   </div>);
 }
 

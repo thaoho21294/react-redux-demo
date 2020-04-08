@@ -1,6 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const CSSModuleLoader = {
+  loader: 'css-loader',
+  options: {
+    modules: true,
+  },
+};
+
 module.exports = {
   entry: './client/index.js',
   output: {
@@ -11,6 +18,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '*'],
   },
+  mode: 'development',
   module: {
     rules: [{
       test: /\.js?$/,
@@ -21,7 +29,12 @@ module.exports = {
       },
     },
     {
-      test: /\.(s*)css$/,
+      test: /\.module\.scss$/,
+      use: ['style-loader', CSSModuleLoader, 'sass-loader'],
+    },
+    {
+      test: /\.scss$/,
+      exclude: /\.module\.scss$/,
       loader: 'style-loader!css-loader!sass-loader',
     },
     {
@@ -40,4 +53,7 @@ module.exports = {
       'process.env.COSMIC_WRITE_KEY': JSON.stringify(process.env.COSMIC_WRITE_KEY),
     }),
   ],
+  performance: {
+    hints: process.env.NODE_ENV === 'production' ? 'warning' : false,
+  },
 };

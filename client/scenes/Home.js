@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import LefMenu from '../components/LeftMenu';
 import CustomNavBar from '../components/CustomNavBar';
-import Style from '../styles/mainSheet/main.scss';
+import Style from '../styles/home.module.scss';
 import MainView from '../components/MainView';
 import ErrorBoundary from '../components/ErrorBoundary';
 
