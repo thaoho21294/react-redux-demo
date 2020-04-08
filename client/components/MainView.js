@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getTasks } from '../redux/reducer';
 import { VIEW_TYPE } from '../constant';
 import TaskView from './TaskView';
 import CompletedTaskList from './CompletedTaskList';
 import TodoTasks from './TodoTasks';
-import { getTasksApi } from '../service/tasksService';
+import fetchTasksFromAPI from '../redux/effect';
 
 
 export default function MainView() {
@@ -14,22 +13,10 @@ export default function MainView() {
   const view = useSelector(state => state.view);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchTasksFromAPI() {
-      try {
-        const response = await getTasksApi();
-        const json = await response.json();
-        dispatch(getTasks(json));
-      } catch (e) {
-        setError(e.message || 'Unexpected Error!!!');
-      }
-      setLoading(false);
-    }
-
-    fetchTasksFromAPI();
+    fetchTasksFromAPI({ dispatch, setError, setLoading });
   }, []);
 
   if (loading) {
