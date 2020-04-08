@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './client/index.js',
@@ -22,22 +21,8 @@ module.exports = {
       },
     },
     {
-      test: /\.scss$/,
-      use: [{ loader: 'style-loader' },
-        {
-          loader: 'css-loader',
-          options: {
-            module: true,
-          },
-        },
-        {
-          loader: 'sass-loader',
-        },
-      ],
-    },
-    {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader',
+      test: /\.(s*)css$/,
+      loader: 'style-loader!css-loader!sass-loader',
     },
     {
       test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -54,6 +39,5 @@ module.exports = {
       'process.env.COSMIC_READ_KEY': JSON.stringify(process.env.COSMIC_READ_KEY),
       'process.env.COSMIC_WRITE_KEY': JSON.stringify(process.env.COSMIC_WRITE_KEY),
     }),
-    new MiniCssExtractPlugin(),
   ],
 };
