@@ -13,5 +13,16 @@ export function postTaskApi(title) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ title, isCompleted: false }) });
+    body: JSON.stringify({ title, isCompleted: false }),
+  });
+}
+
+export function putTaskApi(task) {
+  return fetch(`${uri}/${task.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ ...task }),
+  });
 }

@@ -3,21 +3,21 @@
     {
       "id": "t01",
       "title": "task 1",
-      "iscompleted": false
+      "status": "todo"
     },
     {
-      "id": "t02",
+      "status": "completed",
       "title": "task 2",
-      "iscompleted": true
+      "id": "t02"
     },
     {
       "id": "t03",
       "title": "task 3",
-      "iscompleted": false
+      "status": "todo"
     },
     {
-      "title": "2222",
-      "isCompleted": false,
+      "title": "another task",
+      "status": "todo",
       "id": "DIK920d"
     }
   ]
