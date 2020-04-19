@@ -1,21 +1,11 @@
-import { TASK_STATUS, VIEW_TYPE } from '../constant';
+import { TASK_STATUS } from '../../constant';
+import { GET_ALL_TASKS, POST_TASK, CHANGE_STATUS, DELETE_TASK } from '../actions';
 
-const GET_ALL_TASKS = 'GET_ALL_TASKS';
-const POST_TASK = 'POST_TASK';
-const CHANGE_STATUS = 'CHANGE_STATUS';
-const DELETE_TASK = 'DELETE_TASK';
-const SET_CURRENT_VIEW = 'SET_CURRENT_VIEW';
-export const getTasks = (tasks) => { return { type: GET_ALL_TASKS, tasks }; };
-export const addTask = (task) => { return { type: POST_TASK, task }; };
-export const changeStatus = (taskId, status) => { return { type: CHANGE_STATUS, taskId, status }; };
-export const deleteTask = (taskId) => { return { type: DELETE_TASK, taskId }; };
-export const setCurrentView = (view) => { return { type: SET_CURRENT_VIEW, view }; };
-
-const initial = {
+const initState = {
   tasks: [],
-  view: VIEW_TYPE.ALL_TASK,
 };
-const reducer = (state = initial, action) => {
+
+export default function reducer(state = initState, action) {
   switch (action.type) {
     case GET_ALL_TASKS: return { ...state, tasks: action.tasks };
     case POST_TASK: {
@@ -42,12 +32,6 @@ const reducer = (state = initial, action) => {
       });
       return { ...state, tasks: removedTasks };
     }
-    case SET_CURRENT_VIEW : {
-      return { ...state, view: action.view };
-    }
-    default:
-      return state;
+    default: return state;
   }
-};
-
-export default reducer;
+}

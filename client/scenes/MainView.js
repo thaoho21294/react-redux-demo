@@ -5,18 +5,17 @@ import { VIEW_TYPE } from '../constant';
 import AllTasksView from './AllTasksView';
 import CompletedTaskView from './CompletedTasksView';
 import TodoTasks from './TodoTasksView';
-import fetchTasksFromAPI from '../redux/effect';
-
+import { fetchTasksEffect } from '../redux/effect';
 
 export default function MainView() {
-  const tasks = useSelector(state => state.tasks);
-  const view = useSelector(state => state.view);
+  const tasks = useSelector(state => state.taskList.tasks);
+  const view = useSelector(state => state.view.currentView);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchTasksFromAPI({ dispatch, setError, setLoading });
+    fetchTasksEffect({ dispatch, setError, setLoading });
   }, []);
 
   if (loading) {
@@ -24,7 +23,7 @@ export default function MainView() {
   }
 
   if (error) {
-    return <div style={{ color: 'red' }}>ERROR: {error}</div>;
+    return <div className="text-danger">ERROR: {error}</div>;
   }
 
   switch (view) {

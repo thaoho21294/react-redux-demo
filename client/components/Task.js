@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
-import { changeStatus, deleteTask } from '../redux/reducer';
+import { changeStatus, deleteTask } from '../redux/actions';
 import { TASK_STATUS } from '../constant';
 
 export default function Task({ task: { id, isCompleted, title } }) {

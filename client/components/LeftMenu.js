@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { setCurrentView } from '../redux/reducer';
+import { setCurrentView } from '../redux/actions';
 import { VIEW_TYPE, TILE_TYPE } from '../constant';
 
 function LeftMenu() {
