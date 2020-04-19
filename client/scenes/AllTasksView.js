@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TaskList from './TaskList';
-import AddTaskForm from './AddTaskForm';
+import TaskList from '../components/TaskList';
+import AddTaskForm from '../components/AddTaskForm';
 
-export default function TaskView(props) {
+export default function AllTasksView(props) {
   return (
     <div>
       <AddTaskForm />
@@ -11,6 +11,6 @@ export default function TaskView(props) {
     </div>);
 }
 
-TaskView.propTypes = {
+AllTasksView.propTypes = {
   tasks: PropTypes.array.isRequired,
 };

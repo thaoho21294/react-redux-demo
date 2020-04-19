@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
 import AddTaskForm from '../components/AddTaskForm';
 
-export default function TodoTasks(props) {
+export default function TodoTasksView(props) {
   const [showAddForm, setShowAddForm] = useState(false);
   const { tasks } = props;
   let alert = '';
@@ -24,6 +24,6 @@ export default function TodoTasks(props) {
   </div>);
 }
 
-TodoTasks.propTypes = {
+TodoTasksView.propTypes = {
   tasks: Proptypes.array.isRequired,
 };
