@@ -3,9 +3,8 @@ import Proptypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
 import AddTaskForm from '../components/AddTaskForm';
 
-export default function TodoTasksView(props) {
+export default function TodoTasksView({ tasks }) {
   const [showAddForm, setShowAddForm] = useState(false);
-  const { tasks } = props;
   let alert = '';
 
   if (tasks.length === 0) {
@@ -16,10 +15,11 @@ export default function TodoTasksView(props) {
   }
 
   return (<div>
+    abc
     {alert}
     {showAddForm && <AddTaskForm />}
     <ul>
-      {tasks.map(task => <li>{task.title}</li>)}
+      {tasks.map(task => <li key={task.id}>{task.title}</li>)}
     </ul>
   </div>);
 }

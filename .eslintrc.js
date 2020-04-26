@@ -9,7 +9,8 @@ module.exports = {
       "env": {
         "browser": true,
         "node": true,
-        "jasmine": true
+        "jest/globals": true
       },
       "parser": "babel-eslint",
+      "plugins": ["jest"],
 };
