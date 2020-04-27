@@ -15,7 +15,6 @@ export default function TodoTasksView({ tasks }) {
   }
 
   return (<div>
-    abc
     {alert}
     {showAddForm && <AddTaskForm />}
     <ul>

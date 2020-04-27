@@ -28,13 +28,10 @@ test('show list of task if todo tasks have elements', () => {
 });
 
 test('show add-task-form if user click here', () => {
-  const { getByText } = render(<TodoTasksView tasks={[]} />);
+  const { getByText, container } = render(<TodoTasksView tasks={[]} />);
 
   fireEvent.click(getByText('here'));
 
   expect(getByText('Add New To-Do')).toBeInTheDocument();
-  const form = getByText((content, element) => {
-    return element.tagName.toLowerCase() === 'form';
-  });
-  expect(form).toBeInTheDocument();
+  expect(container.querySelector('form')).toBeInTheDocument();
 });
