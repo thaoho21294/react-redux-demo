@@ -1,32 +1,28 @@
 import { GET_ALL_TASKS, ADD_TASK, UPDATE_TASK, DELETE_TASK } from '../actions';
 
-const initState = {
-  tasks: [],
-};
-
-export default function reducer(state = initState, action) {
+export default function reducer(tasks = [], action) {
   switch (action.type) {
-    case GET_ALL_TASKS: return { ...state, tasks: action.tasks };
+    case GET_ALL_TASKS: return action.tasks;
     case ADD_TASK: {
-      const updateTasks = [...state.tasks];
-      updateTasks.push(action.task);
-      return { ...state, tasks: updateTasks };
+      const updatedTask = [...tasks];
+      updatedTask.push(action.task);
+      return updatedTask;
     }
     case UPDATE_TASK: {
-      const newArr = state.tasks.map((task) => {
+      const newArr = tasks.map((task) => {
         if (task.id === action.updatedTask.id) {
           return { ...task, ...action.updatedTask };
         }
         return task;
       });
-      return { ...state, tasks: newArr };
+
+      return newArr;
     }
     case DELETE_TASK: {
-      const removedTasks = state.tasks.filter((task) => {
+      return tasks.filter((task) => {
         return !(task.id === action.taskId);
       });
-      return { ...state, tasks: removedTasks };
     }
-    default: return state;
+    default: return tasks;
   }
 }

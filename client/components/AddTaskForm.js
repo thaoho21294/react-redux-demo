@@ -1,29 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { postTaskEffect } from '../redux/effect';
 
 function AddTaskForm() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [state, setState] = React.useReducer((s, a) => ({ ...s, ...a }), {
+    loading: false,
+    error: null,
+  });
   const dispatch = useDispatch();
 
   async function onSubmit(evt) {
     evt.preventDefault();
-    const title = evt.target.taskName.value;
-    await postTaskEffect({ title, dispatch, setLoading, setError });
+    const { taskNameInput } = evt.target.elements;
+    await postTaskEffect(dispatch, setState, { title: taskNameInput.value });
   }
 
   return (
     <React.Fragment>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="taskName1">Add New To-Do</label>
-          <input id="taskName1" name="taskName" placeholder="Enter new task" />
+          <label htmlFor="taskNameInput">Add New To-Do</label>
+          <input id="taskNameInput" name="taskName" placeholder="Enter new task" />
         </div>
         <button type="submit">Add</button>
       </form>
-      { error && <div className="text-danger">error</div> }
-      { loading && <div className="text-info">loading...</div> }
+      { state.error && <div className="text-danger">error</div> }
+      { state.loading && <div className="text-info">loading...</div> }
     </React.Fragment>
   );
 }
