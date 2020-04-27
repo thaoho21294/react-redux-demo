@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function CompletedTaskView(props) {
-  const { tasks } = props;
+export default function CompletedTaskView({ tasks }) {
   return (<ul>
-    {tasks.map(task => <li>{task.title}</li>)}
+    {tasks.map(task => <li key={task.id}>{task.title}</li>)}
   </ul>);
 }
 
