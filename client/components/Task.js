@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Button, Form, Col } from 'react-bootstrap';
 import { completeTaskEffect } from '../redux/effect';
 
 import { deleteTask } from '../redux/actions';
@@ -13,6 +13,7 @@ export default function Task({ task }) {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isShowAction, setIsShowAction] = useState(false);
   const dispatch = useDispatch();
 
   const onComplete = useCallback(() => {
@@ -26,20 +27,32 @@ export default function Task({ task }) {
     dispatch(deleteTask(id));
   };
 
+  function onHover() {
+    setIsShowAction(true);
+  }
+
+  function onLeave() {
+    setIsShowAction(false);
+  }
+
   return (
-    <div className="row">
-      <div className="btn-group" role="group" aria-label="Basic example">
-        <Button type="button" onClick={onComplete} variant="primary">
-          {isCompleted ? 'Undo' : 'Complete' }
-        </Button>
-        <Button type="button" onClick={onDelete} variant="danger">
-          Delete
-        </Button>
-      </div>
-      <h3 style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{title}</h3>
+    <Form onMouseEnter={onHover} onMouseLeave={onLeave}>
+      <Form.Row>
+        <Col xs={7}>
+          <p style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{title}</p>
+        </Col>
+        {isShowAction && <Col>
+          <Button type="button" onClick={onComplete} variant="outline-primary">
+            {isCompleted ? 'Undo' : 'Complete' }
+          </Button>{' '}
+          <Button type="button" onClick={onDelete} variant="outline-danger">
+            Delete
+          </Button>
+        </Col>}
+      </Form.Row>
       { error && <div className="text-danger">error</div> }
       { loading && <div className="text-info">loading...</div> }
-    </div>
+    </Form>
   );
 }
 

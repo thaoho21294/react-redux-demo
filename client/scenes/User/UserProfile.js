@@ -8,9 +8,9 @@ export default function UserProfile() {
   return (<Jumbotron>
     <h3>User Info</h3>
     <Form>
-      <label htmlFor="username">Name: </label>
+      <Form.Label htmlFor="username">Name </Form.Label>
       <FormControl type="text" placeholder="Search" id="username" value={name} />
-      <label htmlFor="email">Email: </label>
+      <Form.Label htmlFor="email">Email </Form.Label>
       <FormControl type="text" placeholder="Search" id="email" value={email} />
     </Form>
   </Jumbotron>);

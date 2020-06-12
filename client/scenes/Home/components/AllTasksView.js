@@ -6,8 +6,8 @@ import AddTaskForm from '../../../components/AddTaskForm';
 export default function AllTasksView(props) {
   return (
     <div>
-      <AddTaskForm />
       <TaskList tasks={props.tasks} />
+      <AddTaskForm />
     </div>);
 }
 
