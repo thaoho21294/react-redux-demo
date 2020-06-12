@@ -6,7 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
-import Home from './scenes/Home';
+import App from './App';
 import store from './redux/store';
 import './styles/app.scss';
 
@@ -14,7 +14,7 @@ library.add(fab, fas);
 
 render(
   <Provider store={store}>
-    <Home />
+    <App />
   </Provider>,
   document.getElementById('root'),
 );

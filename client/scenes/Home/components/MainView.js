@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { VIEW_TYPE, TASK_STATUS } from '../constant';
+import { VIEW_TYPE, TASK_STATUS } from '../../../constant';
 import AllTasksView from './AllTasksView';
 import CompletedTaskView from './CompletedTasksView';
-import TodoTasks from './TodoTasksView';
-import { fetchTasksEffect } from '../redux/effect';
+import TodoTasksView from './TodoTasksView';
+import { fetchTasksEffect } from '../../../redux/effect';
 
 export default function MainView() {
   const tasks = useSelector(state => state.tasks);
@@ -36,7 +36,7 @@ export default function MainView() {
     }
     case VIEW_TYPE.TODO_TASK: {
       const todoTasks = tasks.filter(task => task.status === TASK_STATUS.TODO);
-      return <TodoTasks tasks={todoTasks} />;
+      return <TodoTasksView tasks={todoTasks} />;
     }
     default: return '';
   }

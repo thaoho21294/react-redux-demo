@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Proptypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
-import AddTaskForm from '../components/AddTaskForm';
+import AddTaskForm from '../../../components/AddTaskForm';
 
 export default function TodoTasksView({ tasks }) {
   const [showAddForm, setShowAddForm] = useState(false);
