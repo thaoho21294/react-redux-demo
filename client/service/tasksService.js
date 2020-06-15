@@ -8,13 +8,13 @@ export function getTasksApi() {
   return fetch(uri, { method: 'GET' });
 }
 
-export function postTaskApi(title) {
+export function postTaskApi(title, date) {
   return fetch(uri, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ title, status: TASK_STATUS.TODO }),
+    body: JSON.stringify({ title, status: TASK_STATUS.TODO, date }),
   });
 }
 

@@ -6,9 +6,10 @@ import { completeTaskEffect } from '../redux/effect';
 
 import { TASK_STATUS } from '../constant';
 import Style from '../styles/home.module.scss';
+import { toWeekday } from '../utils/toWeekday';
 
 export default function Task({ task, handleDeleteModalOpen }) {
-  const { status, title } = task;
+  const { status, title, date } = task;
   const isCompleted = status === TASK_STATUS.COMPLETED;
   const dispatch = useDispatch();
   const [state, setState] = useReducer((s, a) => ({ ...s, ...a }), {
@@ -41,10 +42,10 @@ export default function Task({ task, handleDeleteModalOpen }) {
     <Form onMouseEnter={onHover} onMouseLeave={onLeave} className={state.showAction ? Style.border : ''}>
       <Form.Row>
         <Col xs={8}>
-          <div
-            className={Style.lineheight}
-            style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}
-          >{title}</div>
+          <div style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>
+            {title}
+          </div>
+          <div className={Style.weekday}>{toWeekday(date)}</div>
         </Col>
         {state.showAction && <Col>
           <Button type="button" onClick={onComplete} variant="outline-primary">

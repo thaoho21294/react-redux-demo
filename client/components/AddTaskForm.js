@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, InputGroup } from 'react-bootstrap';
+import DatePicker from 'react-date-picker';
+
 import { postTaskEffect } from '../redux/effect';
 import Style from '../styles/home.module.scss';
 
 function AddTaskForm() {
-  const [state, setState] = React.useReducer((s, a) => ({ ...s, ...a }), {
+  const [state, setState] = useReducer((s, a) => ({ ...s, ...a }), {
     loading: false,
     error: null,
     isShowForm: false,
+    taskDate: new Date(),
   });
   const dispatch = useDispatch();
 
   async function onSubmit(evt) {
     evt.preventDefault();
     const { taskNameInput } = evt.target.elements;
-    await postTaskEffect(dispatch, setState, { title: taskNameInput.value });
+    const taskDateMilli = new Date(state.taskDate).getTime();
+    await postTaskEffect(dispatch, setState, { title: taskNameInput.value, date: taskDateMilli });
   }
 
   function onClickAddTask() {
@@ -26,15 +30,22 @@ function AddTaskForm() {
     setState({ isShowForm: false });
   }
 
+  function selectDate(date) {
+    setState({ taskDate: date });
+  }
+
   return (
     <div className={Style.margintop}>
       {!state.isShowForm && <Button variant="outline-info" onClick={onClickAddTask}>
         <span>+</span> Add Task
       </Button>}
       {state.isShowForm && <Form onSubmit={onSubmit}>
-        <Form.Group>
-          <Form.Control id="taskNameInput" name="taskName" placeholder="ex: Learn Vue in 2 month" />
-        </Form.Group>
+        <InputGroup>
+          <Form.Control id="taskNameInput" name="taskName" placeholder="ex: Learn Vue in 2 months" />
+          <InputGroup.Append>
+            <DatePicker onChange={selectDate} value={state.taskDate} format="MMM d" />
+          </InputGroup.Append>
+        </InputGroup>
         <Form.Group>
           <Button type="submit" variant="success">Add Task</Button>{' '}
           <Button variant="outline-secondary" onClick={onClickCancel}>Cancel</Button>
