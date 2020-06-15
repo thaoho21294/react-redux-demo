@@ -6,6 +6,7 @@ import { completeTaskEffect } from '../redux/effect';
 
 import { deleteTask } from '../redux/actions';
 import { TASK_STATUS } from '../constant';
+import Style from '../styles/home.module.scss';
 
 export default function Task({ task }) {
   const { id, status, title } = task;
@@ -36,10 +37,13 @@ export default function Task({ task }) {
   }
 
   return (
-    <Form onMouseEnter={onHover} onMouseLeave={onLeave}>
+    <Form onMouseEnter={onHover} onMouseLeave={onLeave} className={isShowAction ? Style.border : ''}>
       <Form.Row>
-        <Col xs={7}>
-          <p style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>{title}</p>
+        <Col xs={8}>
+          <div
+            className={Style.lineheight}
+            style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}
+          >{title}</div>
         </Col>
         {isShowAction && <Col>
           <Button type="button" onClick={onComplete} variant="outline-primary">
