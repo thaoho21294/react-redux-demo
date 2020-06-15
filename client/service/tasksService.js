@@ -27,3 +27,9 @@ export function putTaskApi(task) {
     body: JSON.stringify({ ...task }),
   });
 }
+
+export function deleteTaskApi(id) {
+  return fetch(`${uri}/${id}`, {
+    method: 'DELETE',
+  });
+}

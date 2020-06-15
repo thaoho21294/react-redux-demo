@@ -1,5 +1,5 @@
-import { getTasks, addTask, updateTask } from './actions';
-import { getTasksApi, postTaskApi, putTaskApi } from '../service/tasksService';
+import { getTasks, addTask, updateTask, deleteTask } from './actions';
+import { getTasksApi, postTaskApi, putTaskApi, deleteTaskApi } from '../service/tasksService';
 
 export async function fetchTasksEffect(dispatch, setState) {
   try {
@@ -25,15 +25,24 @@ export async function postTaskEffect(dispatch, setState, { title }) {
   setState({ loading: false });
 }
 
-export async function completeTaskEffect({ updatedTask, dispatch, setError, setLoading }) {
-  setLoading(true);
+export async function completeTaskEffect({ updatedTask, dispatch, setState }) {
+  setState({ loading: true });
   try {
     // https://developer.mozilla.org/en-US/docs/Web/API/Response
     const response = await putTaskApi(updatedTask);
     const newTask = await response.json();
     dispatch(updateTask(newTask));
   } catch (e) {
+    setState({ error: e.message || 'Unexpected Error!!!' });
+  }
+  setState({ loading: false });
+}
+
+export async function deleteTaskEffect({ id, dispatch, setError }) {
+  try {
+    deleteTaskApi(id);
+    dispatch(deleteTask(id));
+  } catch (e) {
     setError(e.message || 'Unexpected Error!!!');
   }
-  setLoading(false);
 }
