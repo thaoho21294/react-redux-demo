@@ -2,11 +2,11 @@ import React, { useCallback, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Button, Form, Col } from 'react-bootstrap';
-import { completeTaskEffect } from '../redux/effect';
+import moment from 'moment';
 
+import { completeTaskEffect } from '../redux/effect';
 import { TASK_STATUS } from '../constant';
 import Style from '../styles/home.module.scss';
-import { toWeekday } from '../utils/toWeekday';
 
 export default function Task({ task, handleDeleteModalOpen }) {
   const { status, title, date } = task;
@@ -45,7 +45,7 @@ export default function Task({ task, handleDeleteModalOpen }) {
           <div style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>
             {title}
           </div>
-          <div className={Style.weekday}>{toWeekday(date)}</div>
+          <div className={Style.weekday}>{moment(date).format('dddd')}</div>
         </Col>
         {state.showAction && <Col>
           <Button type="button" onClick={onComplete} variant="outline-primary">
