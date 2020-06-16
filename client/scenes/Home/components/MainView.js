@@ -2,9 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { VIEW_TYPE } from '../../../constant';
-import AllTasksView from './AllTasksView';
+import TasksView from './TasksView';
 import CompletedTaskView from './CompletedTasksView';
 import TodoTasksView from './TodoTasksView';
+import ThisWeekTasksView from './ThisWeekTasksView';
 import { fetchTasksEffect } from '../../../redux/effect';
 import {
   tasksSelector,
@@ -12,7 +13,7 @@ import {
   completedTasksSelector,
   todayTasksSelector,
   tomorrowTasksSelector,
-  thisWeekTaskSelector,
+  thisWeekTasksGroupByWeekdaySelector,
 } from '../home.selector';
 
 export default function MainView() {
@@ -21,7 +22,7 @@ export default function MainView() {
   const completedTasks = useSelector(completedTasksSelector);
   const todayTasks = useSelector(todayTasksSelector);
   const tomorrowTasks = useSelector(tomorrowTasksSelector);
-  const thisWeekTasks = useSelector(thisWeekTaskSelector);
+  const thisWeekTasks = useSelector(thisWeekTasksGroupByWeekdaySelector);
   const view = useSelector(state => state.view);
 
   const [state, setState] = React.useReducer((s, a) => ({ ...s, ...a }), {
@@ -43,12 +44,12 @@ export default function MainView() {
   }
 
   switch (view) {
-    case VIEW_TYPE.ALL_TASK: return <AllTasksView tasks={tasks} />;
+    case VIEW_TYPE.ALL_TASK: return <TasksView tasks={tasks} />;
     case VIEW_TYPE.COMPLETED_TASK: return <CompletedTaskView tasks={completedTasks} />;
     case VIEW_TYPE.TODO_TASK: return <TodoTasksView tasks={todoTasks} />;
-    case VIEW_TYPE.TODAY_TASK: return <AllTasksView tasks={todayTasks} />;
-    case VIEW_TYPE.TOMORROW_TASK: return <AllTasksView tasks={tomorrowTasks} />;
-    case VIEW_TYPE.THIS_WEEK_TASK: return <AllTasksView tasks={thisWeekTasks} />;
+    case VIEW_TYPE.TODAY_TASK: return <TasksView tasks={todayTasks} />;
+    case VIEW_TYPE.TOMORROW_TASK: return <TasksView tasks={tomorrowTasks} />;
+    case VIEW_TYPE.THIS_WEEK_TASK: return <ThisWeekTasksView tasks={thisWeekTasks} />;
     default: return '';
   }
 }

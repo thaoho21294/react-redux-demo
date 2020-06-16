@@ -28,13 +28,23 @@ const tomorrowTasksSelector = createSelector(
   }),
 );
 
-const thisWeekTaskSelector = createSelector(
+const thisWeekTasksSelector = createSelector(
   tasksSelector,
   tasks => tasks.filter((task) => {
-    const next7day = moment().add(7, 'days');
     const taskDate = moment(task.date);
-    return taskDate.isSameOrBefore(next7day, 'day') && taskDate.isSameOrAfter(moment(), 'day');
+    const fromDate = moment().startOf('isoWeek');
+    const toDate = moment().endOf('isoWeek');
+    return taskDate.isSameOrBefore(toDate, 'day') && taskDate.isSameOrAfter(fromDate, 'day');
   }),
+);
+
+const thisWeekTasksGroupByWeekdaySelector = createSelector(
+  thisWeekTasksSelector,
+  tasks => tasks.reduce((result, task) => {
+    // eslint-disable-next-line no-param-reassign
+    result[task.weekday] = [...result[task.weekday] || [], task];
+    return result;
+  }, {}),
 );
 
 export {
@@ -43,5 +53,5 @@ export {
   completedTasksSelector,
   todayTasksSelector,
   tomorrowTasksSelector,
-  thisWeekTaskSelector,
+  thisWeekTasksGroupByWeekdaySelector,
 };

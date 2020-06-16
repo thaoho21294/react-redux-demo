@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import TaskList from '../../../components/TaskList';
 import AddTaskForm from '../../../components/AddTaskForm';
 
-export default function AllTasksView(props) {
+export default function TasksView({ tasks }) {
   return (
     <div>
-      <TaskList tasks={props.tasks} />
+      <TaskList tasks={tasks} />
       <AddTaskForm />
     </div>);
 }
 
-AllTasksView.propTypes = {
+TasksView.propTypes = {
   tasks: PropTypes.array.isRequired,
 };

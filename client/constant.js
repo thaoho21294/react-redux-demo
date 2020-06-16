@@ -21,3 +21,13 @@ export const TASK_STATUS = {
   BLOCKED: 'blocked',
   TODO: 'todo',
 };
+
+export const weekdays = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+  'Sunday',
+];

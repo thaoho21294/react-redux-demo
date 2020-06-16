@@ -14,7 +14,7 @@
     },
     {
       "title": "speak english",
-      "status": "todo",
+      "status": "completed",
       "date": 1592586004440,
       "id": "QJKKQ_z"
     },
@@ -47,6 +47,12 @@
       "status": "todo",
       "date": 1592326800000,
       "id": "sph0Jzx"
+    },
+    {
+      "title": "see friend",
+      "status": "todo",
+      "date": 1591894800000,
+      "id": "UcViAHg"
     }
   ]
 }
