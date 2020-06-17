@@ -41,7 +41,7 @@ export default function Task({ task, handleDeleteModalOpen }) {
     <Form onMouseEnter={onHover} onMouseLeave={onLeave} className={state.showAction ? Style.border : ''}>
       <Form.Row>
         <Col xs={8}>
-          <div style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>
+          <div className={isCompleted ? Style.linethrough : ''}>
             {title}
           </div>
           <div className={Style.weekday}>{weekday}</div>

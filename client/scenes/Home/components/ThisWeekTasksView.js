@@ -1,10 +1,13 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { weekdays } from '../../../constant';
+import { weekdays, TASK_STATUS } from '../../../constant';
 import AddTaskForm from '../../../components/AddTaskForm';
+import Style from '../../../styles/home.module.scss';
 
 export default function ThisWeekTasksView({ tasks }) {
+  const isCompleted = task => task.status === TASK_STATUS.COMPLETED;
+
   return (
     <div>
       <Table bordered>
@@ -19,7 +22,7 @@ export default function ThisWeekTasksView({ tasks }) {
               return (<td key={`td-${day}`}>
                 <ul>
                   {(tasks[day] || []).map((task) => {
-                    return <li key={task.id}>{task.title}</li>;
+                    return <li key={task.id} className={isCompleted(task) ? Style.linethrough : ''}>{task.title}</li>;
                   })}
                 </ul>
               </td>);
