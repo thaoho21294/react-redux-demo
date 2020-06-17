@@ -15,7 +15,10 @@ export default function reducer(tasks = [], action) {
     case GET_ALL_TASKS: return addFieldsToTasks(action.tasks);
     case ADD_TASK: {
       const updatedTask = [...tasks];
-      updatedTask.push(action.task);
+      updatedTask.push({
+        ...action.task,
+        weekday: toWeekDay(action.task.date),
+      });
       return updatedTask;
     }
     case UPDATE_TASK: {
