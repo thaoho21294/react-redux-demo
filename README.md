@@ -1,7 +1,7 @@
 ## Description
 A todo app use react hook
 
-<img alt="todo app ui" src="./resources/todoapp.PNG" />
+<img alt="todo app ui" src="./resources/new-todoapp.PNG" />
 
 # Steps to run app
 
