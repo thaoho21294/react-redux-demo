@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Form, FormControl, Jumbotron, Button, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { useUserState, useUserDispatch } from './user.context';
 import { updateUserEffect } from './user.effect';
 
@@ -31,9 +33,18 @@ export default function UserProfile() {
     setEmail(user.email);
   }
 
+  function onCLickCancel() {
+    setEdit(false);
+  }
+
   return (<Jumbotron>
-    <Button onClick={onClickEdit}>Edit</Button>
-    <h3>User Info</h3>
+    <Row>
+      <Col xs={8}><h3>User Info</h3></Col>
+      {!edit && <Col xs={2}><Button variant="light" onClick={onClickEdit}>
+        <FontAwesomeIcon icon={['fas', 'pen']} />
+        {' '} Edit
+      </Button></Col>}
+    </Row>
     <Form onSubmit={onSubmit}>
       <Form.Group as={Row} controlId="formPlaintextName">
         <Form.Label column sm="2">
@@ -53,9 +64,12 @@ export default function UserProfile() {
           { edit && <FormControl type="email" value={email} onChange={onEmailChange} />}
         </Col>
       </Form.Group>
-      { edit && <Button type="submit">Update</Button> }
+      {edit && <Form.Group>
+        <Button type="submit">Update</Button>{' '}
+        <Button variant="outline-secondary" onClick={onCLickCancel}>Cancel</Button>
+      </Form.Group>}
     </Form>
-    { error && <div className="text-danger">{error}</div> }
-    { loading && <div className="text-info">loading...</div> }
+    {error && <div className="text-danger">{error}</div>}
+    {loading && <div className="text-info">loading...</div>}
   </Jumbotron>);
 }
