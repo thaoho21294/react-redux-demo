@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Navbar, Form, FormControl, Button, Nav } from 'react-bootstrap';
-import { useUserState } from '../scenes/User/UserContext';
+import { useUserState } from '../scenes/User/user.context';
 
 function CustomNavBar() {
-  const { name } = useUserState();
+  const { user: { name }, loading, error } = useUserState();
   return (
     <Navbar bg="light" expand="lg" >
       <Navbar.Brand href="/" className="mr-auto">
@@ -26,7 +26,9 @@ function CustomNavBar() {
           <Button variant="success">Search</Button>
         </Form>
         <Navbar.Text>
-          Signed in as: <a href="#login">{ name }</a>
+        Signed in as: {!loading && !error && <a href="#login">{ name }</a>}
+          { error && <div className="text-danger">{error}</div> }
+          { loading && <div className="text-info">loading...</div> }
         </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>

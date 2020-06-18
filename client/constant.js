@@ -1,3 +1,5 @@
+export const API_BASE_ADDRESS = 'http://localhost:4000';
+
 export const VIEW_TYPE = {
   ALL_TASK: 'ALL_TASK',
   COMPLETED_TASK: 'COMPLETED_TASK',

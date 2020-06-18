@@ -1,6 +1,4 @@
-import { TASK_STATUS } from '../constant';
-
-const API_BASE_ADDRESS = 'http://localhost:4000';
+import { TASK_STATUS, API_BASE_ADDRESS } from '../constant';
 
 export const uri = `${API_BASE_ADDRESS}/tasks`;
 

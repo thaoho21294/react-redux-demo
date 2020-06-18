@@ -51,7 +51,7 @@ function AddTaskForm() {
           <Button variant="outline-secondary" onClick={onClickCancel}>Cancel</Button>
         </Form.Group>
       </Form>}
-      { state.error && <div className="text-danger">error</div> }
+      { state.error && <div className="text-danger">{state.error}</div> }
       { state.loading && <div className="text-info">loading...</div> }
     </div>
   );
