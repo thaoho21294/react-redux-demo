@@ -5,6 +5,7 @@ const CSSModuleLoader = {
   loader: 'css-loader',
   options: {
     modules: true,
+    camelCase: true,
   },
 };
 

@@ -22,7 +22,7 @@ export default function ThisWeekTasksView({ tasks }) {
               return (<td key={`td-${day}`}>
                 <ul>
                   {(tasks[day] || []).map((task) => {
-                    return <li key={task.id} className={isCompleted(task) ? Style.linethrough : ''}>{task.title}</li>;
+                    return <li key={task.id} className={isCompleted(task) ? Style.lineThrough : ''}>{task.title}</li>;
                   })}
                 </ul>
               </td>);

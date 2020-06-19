@@ -10,10 +10,11 @@ import { TASK_STATUS } from '../../constant';
 test('allow user to add task successfully', async () => {
   fetchMock.mock(uri, { status: 201, body: { id: '11', title: 'new task', status: TASK_STATUS.TODO } });
 
-  const { getByLabelText, getByText } = render(<AddTaskFrom />);
+  const { getByPlaceholderText, getByText } = render(<AddTaskFrom />);
+  fireEvent.click(getByText(/Add Task/i));
 
-  fireEvent.change(getByLabelText('Add New To-Do'), { target: { value: 'new task' } });
-  fireEvent.click(getByText('Add'));
+  fireEvent.change(getByPlaceholderText('ex: Learn Vue in 2 months'), { target: { value: 'new task' } });
+  fireEvent.click(getByText('Add Task'));
 
   await waitForElementToBeRemoved(() => getByText(/loading/i));
 

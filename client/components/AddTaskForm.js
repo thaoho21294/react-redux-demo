@@ -35,7 +35,7 @@ function AddTaskForm() {
   }
 
   return (
-    <div className={Style.margintop}>
+    <div className={Style.marginTop5}>
       {!state.isShowForm && <Button variant="outline-info" onClick={onClickAddTask}>
         <span>+</span> Add Task
       </Button>}

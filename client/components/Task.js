@@ -36,12 +36,11 @@ export default function Task({ task, handleDeleteModalOpen }) {
   function onLeave() {
     setState({ showAction: false });
   }
-
   return (
     <Form onMouseEnter={onHover} onMouseLeave={onLeave} className={state.showAction ? Style.border : ''}>
       <Form.Row>
         <Col xs={8}>
-          <div className={isCompleted ? Style.linethrough : ''}>
+          <div className={isCompleted ? Style.lineThrough : ''}>
             {title}
           </div>
           <div className={Style.weekday}>{weekday}</div>
@@ -55,7 +54,7 @@ export default function Task({ task, handleDeleteModalOpen }) {
           </Button>
         </Col>}
       </Form.Row>
-      { state.error && <div className="text-danger">error</div> }
+      { state.error && <div className="text-danger">{state.error}</div> }
       { state.loading && <div className="text-info">loading...</div> }
     </Form>
   );
@@ -64,7 +63,7 @@ export default function Task({ task, handleDeleteModalOpen }) {
 Task.propTypes = {
   task: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    isCompleted: PropTypes.boolean,
+    status: PropTypes.string,
     title: PropTypes.string.isRequired,
   }).isRequired,
   handleDeleteModalOpen: PropTypes.func.isRequired,
