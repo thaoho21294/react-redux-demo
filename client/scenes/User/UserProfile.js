@@ -39,27 +39,27 @@ export default function UserProfile() {
 
   return (<Jumbotron>
     <Row>
-      <Col xs={8}><h3>User Info</h3></Col>
-      {!edit && <Col xs={2}><Button variant="light" onClick={onClickEdit}>
+      <Col xs={9}><h3>User Info</h3></Col>
+      {!edit && <Col xs={3}><Button variant="light" onClick={onClickEdit}>
         <FontAwesomeIcon icon={['fas', 'pen']} />
         {' '} Edit
       </Button></Col>}
     </Row>
     <Form onSubmit={onSubmit}>
       <Form.Group as={Row} controlId="formPlaintextName">
-        <Form.Label column sm="2">
+        <Form.Label column xs="2">
           Name
         </Form.Label>
-        <Col sm="10">
+        <Col xs="10">
           {!edit && <Form.Control plaintext readOnly defaultValue={user.name} />}
           {edit && <FormControl type="text" value={name} onChange={onNameChange} />}
         </Col>
       </Form.Group>
       <Form.Group as={Row} controlId="formPlaintextEmail">
-        <Form.Label column sm="2">
+        <Form.Label column xs="2">
           Email
         </Form.Label>
-        <Col sm="10">
+        <Col xs="10">
           {!edit && <Form.Control plaintext readOnly defaultValue={user.email} />}
           { edit && <FormControl type="email" value={email} onChange={onEmailChange} />}
         </Col>

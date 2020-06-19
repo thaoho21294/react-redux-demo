@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Navbar, Form, FormControl, Button, Nav } from 'react-bootstrap';
+import { Navbar, InputGroup, FormControl, Button, Nav } from 'react-bootstrap';
 import { useUserState } from '../scenes/User/user.context';
 
 function CustomNavBar() {
@@ -20,11 +20,15 @@ function CustomNavBar() {
       <Nav.Item>
         <Nav.Link href="/about">About</Nav.Link>
       </Nav.Item>
-      <Navbar.Collapse className="justify-content-end">
-        <Form inline>
+      <Nav.Item>
+        <InputGroup>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="success">Search</Button>
-        </Form>
+          <InputGroup.Append>
+            <Button variant="outline-secondary"><FontAwesomeIcon icon={['fas', 'search']} /></Button>
+          </InputGroup.Append>
+        </InputGroup>
+      </Nav.Item>
+      <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
         Signed in as: {!loading && !error && <a href="#login">{ name }</a>}
           { error && <div className="text-danger">{error}</div> }

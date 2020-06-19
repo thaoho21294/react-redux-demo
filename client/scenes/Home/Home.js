@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <Container>
       <Row>
-        <Col xs={3}>
+        <Col lg={3} sm={4} xs={5}>
           <div className={Style.container}>
             <LeftMenu />
           </div>
         </Col>
-        <Col xs={7}>
+        <Col lg={9} sm={8} xs={7}>
           <div className={Style.container}>
             <ErrorBoundary>
               <MainView />

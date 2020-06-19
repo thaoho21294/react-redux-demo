@@ -7,7 +7,6 @@ export function getUserApi() {
 }
 
 export function putUserApi(user) {
-  console.log(user);
   return fetch(`${uri}`, {
     method: 'PUT',
     headers: {
