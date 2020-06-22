@@ -1,69 +1,60 @@
 {
   "user": {
     "id": "user01",
-    "name": "John3",
-    "email": "john@gmail.com"
+    "name": "Mary",
+    "email": "mary@gmail.com"
   },
   "tasks": [
     {
-      "title": "another task",
-      "status": "completed",
-      "date": 1592585550000,
-      "id": "DIK920d"
-    },
-    {
       "title": "go to dentist",
-      "status": "todo",
-      "date": 1592586000555,
-      "id": "pzhzxD2"
-    },
-    {
-      "title": "speak english",
       "status": "completed",
-      "date": 1592586004440,
-      "id": "QJKKQ_z"
+      "date": 1592586000555,
+      "id": "pzhzxD2",
+      "weekday": "Saturday"
     },
     {
-      "title": "hihi",
-      "status": "todo",
-      "date": 1592217750405,
-      "id": "lZxaf3g"
-    },
-    {
-      "title": "travel",
-      "status": "todo",
-      "date": 1592276929561,
-      "id": "t-zJM2K"
+      "title": "drink",
+      "status": "completed",
+      "date": 1592586000000,
+      "id": "f_mM9sa",
+      "weekday": "Saturday"
     },
     {
       "title": "running",
       "status": "todo",
-      "date": 1592278819923,
-      "id": "wgNgOjR"
+      "date": 1592800868635,
+      "id": "uBXVdER"
     },
     {
-      "title": "speaking",
+      "title": "learn unit-test",
       "status": "todo",
-      "date": 1592672400000,
-      "id": "H1-waiV"
+      "date": 1592800868635,
+      "id": "0mOYprj"
     },
     {
-      "title": "cooking",
+      "title": "travel",
       "status": "todo",
-      "date": 1592326800000,
-      "id": "sph0Jzx"
+      "date": 1592845200000,
+      "id": "DaL8E3p"
     },
     {
       "title": "shopping",
       "status": "todo",
-      "date": 1592154000000,
-      "id": "XOJs_Q5"
+      "date": 1593104400000,
+      "id": "zMkFXms"
     },
     {
-      "title": "drink",
+      "title": "Clean house",
       "status": "todo",
-      "date": 1592586000000,
-      "id": "f_mM9sa"
+      "date": 1593277200000,
+      "id": "kXJH396"
+    },
+    {
+      "title": "buy a gift",
+      "status": "completed",
+      "date": 1593018000000,
+      "id": "FkuHQWh",
+      "weekday": "Thursday"
     }
   ]
 }
