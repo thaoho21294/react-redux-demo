@@ -1,11 +1,12 @@
 import React from 'react';
 import fetchMock from 'fetch-mock';
+import '@testing-library/jest-dom/extend-expect';
 
 import { TASK_STATUS } from '../../constant';
 import Task from '../Task';
-import { url } from '../../service/tasksService';
+import { url } from '../../services/task.service';
 import { render, fireEvent, waitForElementToBeRemoved, defaultStore } from '../../__mocks__/test-utils';
-import { addTask } from '../../redux/actions';
+import { addTask } from '../../redux/task/task.actions';
 
 test('completing a task should update store', async () => {
   const task = { id: 'task01', title: 'a task name', status: TASK_STATUS.TODO };

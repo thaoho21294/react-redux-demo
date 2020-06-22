@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock';
 
 import { render, fireEvent, waitForElementToBeRemoved, defaultStore } from '../../__mocks__/test-utils';
 import AddTaskFrom from '../AddTaskForm';
-import { uri } from '../../service/tasksService';
+import { uri } from '../../services/task.service';
 import { TASK_STATUS } from '../../constant';
 
 test('allow user to add task successfully', async () => {

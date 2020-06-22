@@ -2,7 +2,7 @@ import React from 'react';
 import TaskList from '../TaskList';
 import { TASK_STATUS } from '../../constant';
 import { render, fireEvent, defaultStore } from '../../__mocks__/test-utils';
-import { addTask } from '../../redux/actions';
+import { addTask } from '../../redux/task/task.actions';
 
 test('deleting a task reduce amount of tasks in store', () => {
   const tasks = [

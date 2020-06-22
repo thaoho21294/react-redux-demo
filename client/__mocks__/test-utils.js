@@ -2,7 +2,7 @@ import React from 'react';
 import { render as rtlRender } from '@testing-library/react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from '../redux/reducers/index';
+import reducer from '../redux/combineReducers';
 
 export const defaultStore = createStore(reducer);
 
