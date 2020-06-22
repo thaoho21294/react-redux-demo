@@ -40,8 +40,8 @@ export async function completeTaskEffect({ updatedTask, dispatch, setState }) {
 
 export async function deleteTaskEffect({ id, dispatch, setError }) {
   try {
-    deleteTaskApi(id);
     dispatch(deleteTask(id));
+    deleteTaskApi(id);
   } catch (e) {
     setError(e.message || 'Unexpected Error!!!');
   }
