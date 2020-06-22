@@ -1,18 +1,9 @@
-import { GET_ALL_TASKS, ADD_TASK, UPDATE_TASK, DELETE_TASK } from '../actions';
+import { GET_ALL_TASKS, ADD_TASK, UPDATE_TASK, DELETE_TASK } from './task.actions';
 import toWeekDay from '../../utils/toWeekday';
-
-function addFieldsToTasks(tasks) {
-  return tasks.map((task) => {
-    return {
-      ...task,
-      weekday: toWeekDay(task.date),
-    };
-  });
-}
 
 export default function reducer(tasks = [], action) {
   switch (action.type) {
-    case GET_ALL_TASKS: return addFieldsToTasks(action.tasks);
+    case GET_ALL_TASKS: return action.tasks;
     case ADD_TASK: {
       const updatedTask = [...tasks];
       updatedTask.push({

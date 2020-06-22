@@ -1,5 +1,5 @@
-import { getTasks, addTask, updateTask, deleteTask } from './actions';
-import { getTasksApi, postTaskApi, putTaskApi, deleteTaskApi } from '../service/tasksService';
+import { getTasks, addTask, updateTask, deleteTask } from './task.actions';
+import { getTasksApi, postTaskApi, putTaskApi, deleteTaskApi } from '../../services/task.service';
 
 export async function fetchTasksEffect(dispatch, setState) {
   try {

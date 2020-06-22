@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import reducer from './reducers/index';
+import reducer from './combineReducers';
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(

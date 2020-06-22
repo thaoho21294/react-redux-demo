@@ -6,7 +6,7 @@ import TasksView from './TasksView';
 import CompletedTaskView from './CompletedTasksView';
 import TodoTasksView from './TodoTasksView';
 import ThisWeekTasksView from './ThisWeekTasksView';
-import { fetchTasksEffect } from '../../../redux/effect';
+import { fetchTasksEffect } from '../../../redux/task/task.effect';
 import {
   tasksSelector,
   todoTasksSelector,
@@ -14,7 +14,7 @@ import {
   todayTasksSelector,
   tomorrowTasksSelector,
   thisWeekTasksGroupByWeekdaySelector,
-} from '../home.selector';
+} from '../../../redux/task/task.selector';
 
 export default function MainView() {
   const tasks = useSelector(tasksSelector);

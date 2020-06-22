@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Button, Form, Col } from 'react-bootstrap';
 
-import { completeTaskEffect } from '../redux/effect';
+import { completeTaskEffect } from '../redux/task/task.effect';
 import { TASK_STATUS } from '../constant';
 import Style from '../styles/home.module.scss';
 

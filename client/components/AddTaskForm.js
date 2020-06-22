@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 
-import { postTaskEffect } from '../redux/effect';
+import { postTaskEffect } from '../redux/task/task.effect';
 import Style from '../styles/home.module.scss';
 
 function AddTaskForm() {

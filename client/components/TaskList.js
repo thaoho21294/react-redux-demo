@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import Task from '../components/Task';
 import ConfirmModal from '../components/ConfirmModal';
-import { deleteTaskEffect } from '../redux/effect';
+import { deleteTaskEffect } from '../redux/task/task.effect';
 
 export default function TaskList({ tasks }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
