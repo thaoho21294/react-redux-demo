@@ -12,11 +12,11 @@ export async function fetchTasksEffect(dispatch, setState) {
   setState({ loading: false });
 }
 
-export async function postTaskEffect(dispatch, setState, { title, date }) {
+export async function postTaskEffect(dispatch, setState, { title, date, weekday }) {
   setState({ loading: true });
   try {
     // https://developer.mozilla.org/en-US/docs/Web/API/Response
-    const response = await postTaskApi(title, date);
+    const response = await postTaskApi(title, date, weekday);
     const newTask = await response.json();
     dispatch(addTask(newTask));
   } catch (e) {

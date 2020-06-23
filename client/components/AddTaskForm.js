@@ -5,6 +5,7 @@ import DatePicker from 'react-date-picker';
 
 import { postTaskEffect } from '../redux/task/task.effect';
 import Style from '../styles/home.module.scss';
+import toWeekday from '../utils/toWeekday';
 
 function AddTaskForm() {
   const [state, setState] = useReducer((s, a) => ({ ...s, ...a }), {
@@ -19,7 +20,8 @@ function AddTaskForm() {
     evt.preventDefault();
     const { taskNameInput } = evt.target.elements;
     const taskDateMilli = new Date(state.taskDate).getTime();
-    await postTaskEffect(dispatch, setState, { title: taskNameInput.value, date: taskDateMilli });
+    await postTaskEffect(dispatch, setState,
+      { title: taskNameInput.value, date: taskDateMilli, weekday: toWeekday(taskDateMilli) });
   }
 
   function onClickAddTask() {

@@ -6,13 +6,13 @@ export function getTasksApi() {
   return fetch(url, { method: 'GET' });
 }
 
-export function postTaskApi(title, date) {
+export function postTaskApi(title, date, weekday) {
   return fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ title, status: TASK_STATUS.TODO, date }),
+    body: JSON.stringify({ title, status: TASK_STATUS.TODO, date, weekday }),
   });
 }
 

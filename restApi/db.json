@@ -1,8 +1,8 @@
 {
   "user": {
     "id": "user01",
-    "name": "Mary",
-    "email": "mary@gmail.com"
+    "name": "Thao",
+    "email": "thao.ho@s3corp.com.vn"
   },
   "tasks": [
     {
@@ -22,39 +22,30 @@
     {
       "title": "running",
       "status": "todo",
-      "date": 1592800868635,
-      "id": "uBXVdER"
+      "date": 1592900676769,
+      "weekday": "Tuesday",
+      "id": "u1Vph14"
     },
     {
-      "title": "learn unit-test",
+      "title": "sure?",
       "status": "todo",
-      "date": 1592800868635,
-      "id": "0mOYprj"
+      "date": 1592931600000,
+      "weekday": "Wednesday",
+      "id": "oWygnLo"
+    },
+    {
+      "title": "move to new place",
+      "status": "todo",
+      "date": 1593104400000,
+      "weekday": "Friday",
+      "id": "rF_7Z6k"
     },
     {
       "title": "travel",
       "status": "todo",
-      "date": 1592845200000,
-      "id": "DaL8E3p"
-    },
-    {
-      "title": "shopping",
-      "status": "todo",
-      "date": 1593104400000,
-      "id": "zMkFXms"
-    },
-    {
-      "title": "Clean house",
-      "status": "todo",
-      "date": 1593277200000,
-      "id": "kXJH396"
-    },
-    {
-      "title": "buy a gift",
-      "status": "completed",
       "date": 1593018000000,
-      "id": "FkuHQWh",
-      "weekday": "Thursday"
+      "weekday": "Thursday",
+      "id": "Zb1CwgM"
     }
   ]
 }
