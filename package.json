@@ -64,7 +64,7 @@
     "json-server": "^0.16.1",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.11.0",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.24.3"
