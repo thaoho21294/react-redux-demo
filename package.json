@@ -62,7 +62,7 @@
     "json-server": "^0.16.3",
     "node-fetch": "^2.6.7",
     "nodemon": "^1.19.4",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.25.1"
