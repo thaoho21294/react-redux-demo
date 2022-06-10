@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Button, Form, Col } from 'react-bootstrap';
@@ -18,12 +18,13 @@ export default function Task({ task, handleDeleteModalOpen }) {
     showDeleteModal: false,
   });
 
-  const onComplete = useCallback(() => {
+  const onComplete = () => {
     const updatedTask = {
       ...task,
-      status: isCompleted ? TASK_STATUS.TODO : TASK_STATUS.COMPLETED };
+      status: isCompleted ? TASK_STATUS.TODO : TASK_STATUS.COMPLETED,
+    };
     completeTaskEffect({ updatedTask, dispatch, setState });
-  });
+  };
 
   function onClickDelete() {
     handleDeleteModalOpen(task);
