@@ -1,4 +1,5 @@
 ## Description
+
 A todo app use react hook
 
 <img alt="todo app ui" src="./resources/new-todoapp.PNG" />
@@ -6,13 +7,13 @@ A todo app use react hook
 # Steps to run app
 
 ## Run json server
-  > cd restApi then node api.js
 
-  or
-  > run file runService.bat
+> npm start-api
 
 ## Run ui
-  > npm start
 
-## Run test 
-  > npm test
+> npm start
+
+## Run test
+
+> npm test

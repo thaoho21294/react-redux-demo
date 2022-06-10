@@ -4,8 +4,8 @@
   "description": "A simple todo app thet uses the Cosmic JS API",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node server/index.js",
-    "start-dev": "nodemon server/index.js",
+    "start": "npm run build && nodemon server/index",
+    "start-api": "nodemon restApi/api",
     "build": "webpack -p",
     "build-dev": "webpack -w",
     "build-sass": "node-sass -w ./client/styles/main.scss -o ./client/styles/mainSheet",
