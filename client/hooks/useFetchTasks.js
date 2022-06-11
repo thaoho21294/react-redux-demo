@@ -11,7 +11,7 @@ export const useFetchTasks = () => {
   });
   const dispatch = useDispatch();
 
-  useEffect(async () => {
+  const fetchData = async () => {
     try {
       const response = await getTasksApi();
       const json = await response.json();
@@ -21,6 +21,10 @@ export const useFetchTasks = () => {
       setState({ error: e.message || 'Unexpected Error!!!' });
     }
     setState({ loading: false });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return state;
