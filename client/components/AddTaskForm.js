@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
@@ -15,6 +15,7 @@ function AddTaskForm() {
     taskDate: new Date(),
   });
   const dispatch = useDispatch();
+  const inputEl = useRef(null);
 
   async function onSubmit(evt) {
     evt.preventDefault();
@@ -36,6 +37,12 @@ function AddTaskForm() {
     setState({ taskDate: date });
   }
 
+  useEffect(() => {
+    if (inputEl.current) {
+      inputEl.current.focus();
+    }
+  }, [state.isShowForm]);
+
   return (
     <div className={Style.marginTop5}>
       {!state.isShowForm && <Button variant="outline-info" onClick={onClickAddTask}>
@@ -43,7 +50,7 @@ function AddTaskForm() {
       </Button>}
       {state.isShowForm && <Form onSubmit={onSubmit}>
         <InputGroup>
-          <Form.Control id="taskNameInput" name="taskName" placeholder="ex: Learn Vue in 2 months" />
+          <Form.Control id="taskNameInput" name="taskName" placeholder="ex: Learn Vue in 2 months" ref={inputEl} />
           <InputGroup.Append>
             <DatePicker onChange={selectDate} value={state.taskDate} format="MMM d" />
           </InputGroup.Append>
