@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import Proptypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import AddTaskForm from '../../../components/AddTaskForm';
+import { todoTasksSelector } from '../../../redux/task/task.selector';
 
-export default function TodoTasksView({ tasks }) {
+export default function TodoTasksView() {
+  const tasks = useSelector(todoTasksSelector);
+
   const [showAddForm, setShowAddForm] = useState(false);
   let alert = '';
 
@@ -26,7 +29,3 @@ export default function TodoTasksView({ tasks }) {
     </ul>
   </div>);
 }
-
-TodoTasksView.propTypes = {
-  tasks: Proptypes.array.isRequired,
-};

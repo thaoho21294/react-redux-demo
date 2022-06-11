@@ -1,16 +1,5 @@
-import { getTasks, addTask, updateTask, deleteTask } from './task.actions';
-import { getTasksApi, postTaskApi, putTaskApi, deleteTaskApi } from '../../services/task.service';
-
-export async function fetchTasksEffect(dispatch, setState) {
-  try {
-    const response = await getTasksApi();
-    const json = await response.json();
-    dispatch(getTasks(json));
-  } catch (e) {
-    setState({ error: e.message || 'Unexpected Error!!!' });
-  }
-  setState({ loading: false });
-}
+import { addTask, updateTask, deleteTask } from './task.actions';
+import { postTaskApi, putTaskApi, deleteTaskApi } from '../../services/task.service';
 
 export async function postTaskEffect(dispatch, setState, { title, date, weekday }) {
   setState({ loading: true });

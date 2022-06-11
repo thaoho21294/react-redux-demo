@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { completedTasksSelector } from '../../../redux/task/task.selector';
 
-export default function CompletedTaskView({ tasks }) {
+export default function CompletedTaskView() {
+  const tasks = useSelector(completedTasksSelector);
+
   return (<ul>
     {tasks.map(task => <li key={task.id}>{task.title}</li>)}
   </ul>);
 }
-
-CompletedTaskView.propTypes = {
-  tasks: PropTypes.array.isRequired,
-};

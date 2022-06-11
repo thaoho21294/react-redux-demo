@@ -1,11 +1,13 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { weekdays, TASK_STATUS } from '../../../constant';
 import AddTaskForm from '../../../components/AddTaskForm';
 import Style from '../../../styles/home.module.scss';
+import { thisWeekTasksGroupByWeekdaySelector } from '../../../redux/task/task.selector';
 
-export default function ThisWeekTasksView({ tasks }) {
+export default function ThisWeekTasksView() {
+  const tasks = useSelector(thisWeekTasksGroupByWeekdaySelector);
   const isCompleted = task => task.status === TASK_STATUS.COMPLETED;
 
   return (
@@ -34,7 +36,3 @@ export default function ThisWeekTasksView({ tasks }) {
     </div>
   );
 }
-
-ThisWeekTasksView.propTypes = {
-  tasks: PropTypes.object.isRequired,
-};
