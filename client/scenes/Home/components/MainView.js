@@ -8,13 +8,12 @@ import TodoTasksView from './TodoTasksView';
 import ThisWeekTasksView from './ThisWeekTasksView';
 import { useFetchTasks } from '../../../hooks/useFetchTasks';
 import {
-  tasksSelector,
   todayTasksSelector,
   tomorrowTasksSelector,
 } from '../../../redux/task/task.selector';
+import AllTasks from './AllTasks';
 
 export default function MainView() {
-  const tasks = useSelector(tasksSelector);
   const todayTasks = useSelector(todayTasksSelector);
   const tomorrowTasks = useSelector(tomorrowTasksSelector);
   const view = useSelector(state => state.view);
@@ -29,7 +28,7 @@ export default function MainView() {
   }
 
   switch (view) {
-    case VIEW_TYPE.ALL_TASK: return <TasksView tasks={tasks} />;
+    case VIEW_TYPE.ALL_TASK: return <AllTasks />;
     case VIEW_TYPE.COMPLETED_TASK: return <CompletedTaskView />;
     case VIEW_TYPE.TODO_TASK: return <TodoTasksView />;
     case VIEW_TYPE.TODAY_TASK: return <TasksView tasks={todayTasks} />;
