@@ -20,6 +20,10 @@ function AddTaskForm() {
   async function onSubmit(evt) {
     evt.preventDefault();
     const { taskNameInput } = evt.target.elements;
+    if (taskNameInput.value === '') {
+      setState({ error: 'Please fill the name!' });
+      return;
+    }
     const taskDateMilli = new Date(state.taskDate).getTime();
     await postTaskEffect(dispatch, setState,
       { title: taskNameInput.value, date: taskDateMilli, weekday: toWeekday(taskDateMilli) });
@@ -30,7 +34,7 @@ function AddTaskForm() {
   }
 
   function onClickCancel() {
-    setState({ isShowForm: false });
+    setState({ isShowForm: false, error: null });
   }
 
   function selectDate(date) {

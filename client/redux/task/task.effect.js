@@ -11,7 +11,7 @@ export async function postTaskEffect(dispatch, setState, { title, date, weekday 
   } catch (e) {
     setState({ error: e.message || 'Unexpected Error!!!' });
   }
-  setState({ loading: false });
+  setState({ loading: false, error: null });
 }
 
 export async function completeTaskEffect({ updatedTask, dispatch, setState }) {
