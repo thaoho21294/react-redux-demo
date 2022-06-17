@@ -1,9 +1,9 @@
-import { API_BASE_ADDRESS } from '../../constant';
+import { API_BASE_ADDRESS } from '../../constant'
 
-const uri = `${API_BASE_ADDRESS}/user`;
+const uri = `${API_BASE_ADDRESS}/user`
 
 export function getUserApi() {
-  return fetch(uri);
+  return fetch(uri)
 }
 
 export function putUserApi(user) {
@@ -13,5 +13,5 @@ export function putUserApi(user) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ ...user }),
-  });
+  })
 }

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
 
-import LeftMenu from '../../components/LeftMenu';
-import Style from '../../styles/home.module.scss';
-import MainView from './components/MainView';
-import ErrorBoundary from '../../components/ErrorBoundary';
+import LeftMenu from '../../components/LeftMenu'
+import Style from '../../styles/home.module.scss'
+import MainView from './components/MainView'
+import ErrorBoundary from '../../components/ErrorBoundary'
 
 export default function Home() {
   return (
@@ -24,6 +24,5 @@ export default function Home() {
         </Col>
       </Row>
     </Container>
-  );
+  )
 }
-

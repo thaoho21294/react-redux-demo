@@ -1,4 +1,4 @@
-export const API_BASE_ADDRESS = 'http://localhost:4000';
+export const API_BASE_ADDRESS = 'http://localhost:4000'
 
 export const VIEW_TYPE = {
   ALL_TASK: 'ALL_TASK',
@@ -7,7 +7,7 @@ export const VIEW_TYPE = {
   TODAY_TASK: 'TODAY_TASK',
   TOMORROW_TASK: 'TOMORROW_TASK',
   THIS_WEEK_TASK: 'THIS_WEEK_TASK',
-};
+}
 
 export const TILE_TYPE = {
   ALL_TASK: 'All Tasks',
@@ -16,13 +16,13 @@ export const TILE_TYPE = {
   TODAY_TASK: 'Today Tasks',
   TOMORROW_TASK: 'Tomorrow Tasks',
   THIS_WEEK_TASK: 'This week tasks',
-};
+}
 
 export const TASK_STATUS = {
   COMPLETED: 'completed',
   BLOCKED: 'blocked',
   TODO: 'todo',
-};
+}
 
 export const weekdays = [
   'Monday',
@@ -32,4 +32,4 @@ export const weekdays = [
   'Friday',
   'Saturday',
   'Sunday',
-];
+]

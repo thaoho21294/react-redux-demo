@@ -1,9 +1,9 @@
-import { TASK_STATUS, API_BASE_ADDRESS } from '../constant';
+import { TASK_STATUS, API_BASE_ADDRESS } from '../constant'
 
-export const url = `${API_BASE_ADDRESS}/tasks`;
+export const url = `${API_BASE_ADDRESS}/tasks`
 
 export function getTasksApi() {
-  return fetch(url, { method: 'GET' });
+  return fetch(url, { method: 'GET' })
 }
 
 export function postTaskApi(title, date, weekday) {
@@ -13,7 +13,7 @@ export function postTaskApi(title, date, weekday) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ title, status: TASK_STATUS.TODO, date, weekday }),
-  });
+  })
 }
 
 export function putTaskApi(task) {
@@ -23,11 +23,11 @@ export function putTaskApi(task) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ ...task }),
-  });
+  })
 }
 
 export function deleteTaskApi(id) {
   return fetch(`${url}/${id}`, {
     method: 'DELETE',
-  });
+  })
 }

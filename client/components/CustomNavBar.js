@@ -1,12 +1,16 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Navbar, Nav } from 'react-bootstrap';
-import { useUserState } from '../scenes/User/user.context';
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Navbar, Nav } from 'react-bootstrap'
+import { useUserState } from '../scenes/User/user.context'
 
 function CustomNavBar() {
-  const { user: { name }, loading, error } = useUserState();
+  const {
+    user: { name },
+    loading,
+    error,
+  } = useUserState()
   return (
-    <Navbar bg="light" expand="lg" >
+    <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/" className="mr-auto">
         <FontAwesomeIcon icon={['fas', 'tasks']} />
         Todo App
@@ -22,13 +26,13 @@ function CustomNavBar() {
       </Nav.Item>
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
-        Signed in as: {!loading && !error && <a href="#login">{ name }</a>}
-          { error && <div className="text-danger">{error}</div> }
-          { loading && <div className="text-info">loading...</div> }
+          Signed in as: {!loading && !error && <a href="#login">{name}</a>}
+          {error && <div className="text-danger">{error}</div>}
+          {loading && <div className="text-info">loading...</div>}
         </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>
-  );
+  )
 }
 
-export default CustomNavBar;
+export default CustomNavBar

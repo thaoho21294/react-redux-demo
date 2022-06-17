@@ -1,5 +1,5 @@
-import moment from 'moment';
+import moment from 'moment'
 
 export default function toWeekday(date) {
-  return moment(date).format('dddd');
+  return moment(date).format('dddd')
 }
