@@ -7,11 +7,11 @@ import { postTaskEffect } from '../redux/task/task.effect'
 import Style from '../styles/home.module.scss'
 import toWeekday from '../utils/toWeekday'
 
-function AddTaskForm() {
+function AddTaskForm({ isShowForm = false }) {
   const [state, setState] = useReducer((s, a) => ({ ...s, ...a }), {
     loading: false,
     error: null,
-    isShowForm: false,
+    isShowForm: isShowForm,
     taskDate: new Date(),
   })
   const dispatch = useDispatch()

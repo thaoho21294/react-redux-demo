@@ -1,43 +1,55 @@
 import React from 'react'
+import { within } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import MockDate from 'mockdate'
 import { render } from '../../../../__mocks__/test-utils'
-import { weekdays, TASK_STATUS } from '../../../../constant'
+import { TASK_STATUS } from '../../../../constant'
 import ThisWeekTasksView from '../ThisWeekTasksView'
 
-test('should render 7 days with conrresponding tasks', () => {
-  const tasks = {
-    Saturday: [
+describe('ThisWeekTasksView', () => {
+  beforeAll(() => {
+    MockDate.set(1655533232)
+  })
+
+  afterAll(() => {
+    MockDate.reset()
+  })
+  test('should render tasks that are categorized by week days', () => {
+    const tasks = [
       {
         id: '1',
         title: 'task 1',
         status: TASK_STATUS.TODO,
-        date: 1592586000555,
+        date: 1655533232,
         weekday: 'Saturday',
       },
-    ],
-    Thursday: [
       {
         id: '2',
         title: 'task 2',
         status: TASK_STATUS.TODO,
-        date: 1593018000000,
+        date: 1655359747,
         weekday: 'Thursday',
       },
       {
-        id: '2',
+        id: '3',
         title: 'task 3',
         status: TASK_STATUS.TODO,
-        date: 1592800868635,
+        date: 1655360000,
         weekday: 'Thursday',
       },
-    ],
-  }
-  const { getByText } = render(<ThisWeekTasksView tasks={tasks} />)
+    ]
 
-  weekdays.forEach((day) => {
-    expect(getByText(day)).toBeInTheDocument()
+    const { container } = render(<ThisWeekTasksView />, {
+      initialState: {
+        tasks,
+      },
+    })
+
+    const tasksByWeekday = container.querySelectorAll('td')
+
+    expect(within(tasksByWeekday[3]).getByText('task 2')).toBeInTheDocument()
+    expect(within(tasksByWeekday[3]).getByText('task 3')).toBeInTheDocument()
+
+    expect(within(tasksByWeekday[5]).getByText('task 1')).toBeInTheDocument()
   })
-  expect(getByText('task 1')).toBeInTheDocument()
-  expect(getByText('task 2')).toBeInTheDocument()
-  expect(getByText('task 3')).toBeInTheDocument()
 })

@@ -6,12 +6,14 @@ import reducer from '../redux/combineReducers'
 
 export const defaultStore = createStore(reducer)
 
-function render(ui, { store = defaultStore, ...renderOptions } = {}) {
+function render(ui, { initialState, ...renderOptions } = {}) {
   // eslint-disable-next-line react/prop-types
+  const store = createStore(reducer, initialState)
   function Wrapper({ children }) {
     return <Provider store={store}>{children}</Provider>
   }
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
+  const renderUtils = rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
+  return { ...renderUtils, store }
 }
 
 // re-export everything

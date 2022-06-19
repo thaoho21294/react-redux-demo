@@ -5,7 +5,6 @@ import {
   render,
   fireEvent,
   waitForElementToBeRemoved,
-  defaultStore,
 } from '../../__mocks__/test-utils'
 import AddTaskFrom from '../AddTaskForm'
 import { uri } from '../../services/task.service'
@@ -17,7 +16,7 @@ test('allow user to add task successfully', async () => {
     body: { id: '11', title: 'new task', status: TASK_STATUS.TODO },
   })
 
-  const { getByPlaceholderText, getByText } = render(<AddTaskFrom />)
+  const { getByPlaceholderText, getByText, store } = render(<AddTaskFrom />)
   fireEvent.click(getByText(/Add Task/i))
 
   fireEvent.change(getByPlaceholderText('ex: Learn Vue in 2 months'), {
@@ -27,5 +26,5 @@ test('allow user to add task successfully', async () => {
 
   await waitForElementToBeRemoved(() => getByText(/loading/i))
 
-  expect(defaultStore.getState().tasks.length).toBe(1)
+  expect(store.getState().tasks.length).toBe(1)
 })
